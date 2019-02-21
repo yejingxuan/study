@@ -44,6 +44,7 @@ docker kill 容器id
 
 ### docker容器删除命令
 ```docker
+#删除前必须先停止容器
 docker rm 容器id
 ``` 
 
