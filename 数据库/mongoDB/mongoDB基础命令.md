@@ -29,10 +29,28 @@ db.getCollection('table_name').find({"colum1":""},{"colum2":""})
 db.getCollection('table_name').find({}).sort({"colum1":1})
 ```
 
+
+- 分组聚合
+```js
+db.getCollection('table_name').aggregate([{$group : {_id : "$colum1", num_tutorial : {$sum : 1}}}])
+```
+
+- 分页(skip:跳过多少行数据；limit:查询多少数据[pagesize])
+```js
+db.getCollection('table_name').find({}).sort({"colum1":-1}).skip(90).limit(10)
+```
+
+- 去重
+```js
+db.tablename.distinct('column1')
+```
+
+
 ----
 
-
 ## 3、修改命令
+
+
 
 
 ## 4、删除命令
