@@ -42,7 +42,10 @@ db.getCollection('table_name').find({}).sort({"colum1":-1}).skip(90).limit(10)
 
 - 去重
 ```js
+//根据column1去重
 db.tablename.distinct('column1')
+//筛选出column2 = column2_value的数据，根据column1去重
+db.tablename.distinct('column1',{"column2" : "column2_value"})
 ```
 
 
