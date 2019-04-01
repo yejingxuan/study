@@ -5,20 +5,21 @@
 
 ## 2、基本指令
 * 访问es  http://127.0.0.1:9200/  
-
-        {
-        "name" : "BvAiR-X",
-        "cluster_name" : "elasticsearch",
-        "cluster_uuid" : "LorchJMjTOKvvR2fv-H8oA",
-        "version" : {
-            "number" : "5.5.0",
-            "build_hash" : "260387d",
-            "build_date" : "2017-06-30T23:16:05.735Z",
-            "build_snapshot" : false,
-            "lucene_version" : "6.6.0"
-        },
-        "tagline" : "You Know, for Search"
-        }
+```json
+{
+"name" : "BvAiR-X",
+"cluster_name" : "elasticsearch",
+"cluster_uuid" : "LorchJMjTOKvvR2fv-H8oA",
+"version" : {
+        "number" : "5.5.0",
+        "build_hash" : "260387d",
+        "build_date" : "2017-06-30T23:16:05.735Z",
+        "build_snapshot" : false,
+        "lucene_version" : "6.6.0"
+},
+"tagline" : "You Know, for Search"
+}
+```
 
 ## 3、新增索引
 
@@ -51,17 +52,28 @@ PUT  127.0.0.1:9200/userinfo
     "query": {
         "multi_match" : {
             "query" : "张三",
-            "fields" : ["_all"]
+            "fields" : ["name", "addr"]
         }
     },
     "size": 10,
     "from": 0,
     "highlight": {
-        "fields" : {
-            "name" : {}
+    	"pre_tags": ["<tag1>"],
+    	"post_tags": ["</tag2>"],
+        "fields": {
+            "name": {}
         }
     }
 }
 ```
+
+- query 里表示查询条件
+    - "fields" : ["_all"] 表示查询所有字段
+
+- size 表示分页的pagesize
+
+- from 表示从第几行开始查询
+
+- highlight 表示高亮字段
 
 
