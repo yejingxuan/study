@@ -55,3 +55,51 @@ docker rm 容器id
 - 使用docker commit命令
 - 使用docker build命令 和 Dockerfile文件
 
+### 2.1、DockerFile文件编写
+
+```DockerFile
+#FROM统一镜像
+FROM docker.io/fabric8/java-jboss-openjdk8-jdk
+#标注Dockerfile作者
+MAINTAINER yjx<jingxuan.ye@qq.com>
+
+#添加自己的项目到$PRO_PATH
+ADD demo.jar/ $PRO_PATH/
+
+#暴露端口
+EXPOSE 8080
+
+#更改自己的工作目录
+WORKDIR $PRO_PATH/
+
+#默认运行的命令
+CMD java -jar demo.jar
+
+```
+
+
+
+
+## 三、扩展
+
+### 3.1 替换容器里的jar包
+
+1> 进入镜像
+```
+docker exec -it  容器id /bin/bash
+```
+
+2> 到镜像内把我们的jar包删除掉
+```
+rm test-1.0.jar
+```
+
+3> 将jar包拷贝到容器内
+```
+docker cp /home/test-1.0.jar  容器id:/opt/project
+```
+
+4> 提交镜像
+```
+docker commit  容器id  docker.io/yjx-testjar:新容器id
+```

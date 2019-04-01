@@ -1,10 +1,10 @@
 # es学习手册
 
-1.安装步骤
+## 1、安装步骤
 
 
-2.基本指令
-* 访问es  http://47.98.48.32:9200/  
+## 2、基本指令
+* 访问es  http://127.0.0.1:9200/  
 
         {
         "name" : "BvAiR-X",
@@ -20,12 +20,48 @@
         "tagline" : "You Know, for Search"
         }
 
-* 新增索引 
+## 3、新增索引
 
-        PUT  http://47.98.48.32:9200/userinfo
+```js
+PUT  127.0.0.1:9200/userinfo
+```
 
-* 基本查询  
 
-        GET  http://47.98.48.32:9200/userinfo
+## 4、基本查询  
+
+### 参数放于url中
+
+```js
+//查询总数
+127.0.0.1:9200/userinfo/_count
+
+//查询全部数据
+127.0.0.1:9200/userinfo/_search
+
+//搜索name里有叶菁烜的数据
+127.0.0.1:9200/picture/_search?q=name:叶菁烜
+```
+
+### 参数放于请求体（body）里
+
+```js
+127.0.0.1:9200/picture/_search
+
+{
+    "query": {
+        "multi_match" : {
+            "query" : "张三",
+            "fields" : ["_all"]
+        }
+    },
+    "size": 10,
+    "from": 0,
+    "highlight": {
+        "fields" : {
+            "name" : {}
+        }
+    }
+}
+```
 
 
