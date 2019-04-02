@@ -64,12 +64,12 @@
 
 1. 在文件夹下创建DockerFile
     ```
-    touch DockerFile
+    touch Dockerfile
     ```
 
 
-2. DockerFile内容模板
-    ```DockerFile
+2. Dockerfile内容模板
+    ```Dockerfile
     #FROM统一镜像
     FROM docker.io/fabric8/java-jboss-openjdk8-jdk
     #标注Dockerfile作者
@@ -144,3 +144,6 @@
 ```
 docker logs --tail=200 -f 容器id
 ```
+
+
+### 3.3、目录挂载
