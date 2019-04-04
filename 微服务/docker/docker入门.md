@@ -60,9 +60,9 @@
 - 把tar包中的镜像导入
 - docker commit 命令
 
-### 2.1、DockerFile文件编写(把jar包制作成镜像)
+### 2.1、Dockerfile文件编写(把jar包制作成镜像)
 
-1. 在文件夹下创建DockerFile
+1. 在文件夹下创建Dockerfile
     ```
     touch Dockerfile
     ```
@@ -84,7 +84,21 @@
     CMD java -jar demo.jar
     ```
 
-3. DockerFile编写完成后执行镜像构建命令
+    Dockerfile各关键字含义
+    
+    - FROM：基于哪个镜像来制作
+    - MAINTAINER：标注作者
+    - ADD：添加本地文件到镜像中
+    - EXPOSE：暴露端口
+    - WORKDIR： 为RUN 、 CMD 、 ENTRYPOINT 等指令配置工作目
+    - CMD：设置容器执行时的默认命令
+    - RUN：每条指令将在当前镜像基础上执行，并提交为新的镜像
+    - ENV：指定环境变量，会被RUN指令使用，并在容器运行时保存
+    - COPY：复制本地主机的 <src> （ 为 Dockerfile 所在目录的相对路径）到容器中的 <dest> （当使用本地目录为源目录时，推荐使用 COPY）
+    - VOLUME：创建一个可以从本地主机或其他容器挂载的挂载点，一般用来存放数据库和需要保持的数据等
+
+
+3. Dockerfile编写完成后执行镜像构建命令
 
     ```cmd
     docker build -t imagename .
