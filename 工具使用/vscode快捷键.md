@@ -4,3 +4,13 @@
 
 
 - 查找&替换：ctrl+f
+
+
+- 全屏快捷键： F11
+
+- 设置table为4个空格：
+
+    ```json
+    "editor.detectIndentation":false,
+    "editor.tabSize": 4
+    ```
