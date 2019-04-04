@@ -6,7 +6,7 @@
 
 1.2 环境变量配置，在path环境变量中配置go的安装位置，例如：
 
-![avatar][base64str_path]
+![11](https://gitee.com/jingxuanye/yjx-pictures/blob/master/aitcle-pic/TIM%E6%88%AA%E5%9B%BE20190404101557.png)
 
 1.3 在cmd控制台输入 go version 查看是否安装成功
 
