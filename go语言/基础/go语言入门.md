@@ -10,7 +10,7 @@
 
 1.3 在cmd控制台输入 go version 查看是否安装成功
 
-![](https://github.com/yejingxuan/study/blob/master/go%E8%AF%AD%E8%A8%80/TIM%E6%88%AA%E5%9B%BE20190404101557.png)
+![](https://github.com/yejingxuan/pic-depot/blob/master/article-pic/TIM%E6%88%AA%E5%9B%BE20190404101557.png)
 
 
 
