@@ -1,5 +1,6 @@
 # docker入门教程
 
+
 ## 一、docker基础命令
 
 - docker服务启动命令
@@ -80,6 +81,8 @@
     EXPOSE 8080
     #更改自己的工作目录
     WORKDIR $PRO_PATH/
+    #设置时区
+    ENV TZ Asia/Shanghai
     #默认运行的命令
     CMD java -jar demo.jar
     ```
@@ -132,12 +135,12 @@
 
 ### 3.1、替换容器里的jar包
 
-1. 进入镜像
+1. 进入容器内部
     ```
     docker exec -it  容器id /bin/bash
     ```
 
-2. 到镜像内把build进去的jar包删除掉
+2. 到容器内把build进去的jar包删除掉
     ```
     rm test-1.0.jar
     ```
@@ -161,3 +164,14 @@ docker logs --tail=200 -f 容器id
 
 
 ### 3.3、目录挂载
+
+
+
+
+
+### 3.4、一个运行中的Docker容器怎么修改执行run命令时的环境变量
+
+进入到容器中docker exec -it 容器id /bin/bash，再使用export修改就可以了
+export ENV='value'
+
+export -p 查看所有环境变量

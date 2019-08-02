@@ -19,6 +19,19 @@
 
 ---
 
+- 自动补全变量名称 : Ctrl + Alt + v
+
+- 自动补全属性名称 : Ctrl + Alt + f
+
+- 覆盖父类方法：ctrl + o
+
+- 清除无用的包：ctrl + alt + o
+
+- 转大小写：ctrl + shift + u
+
+
+---
+
 * 注释模板设置：File–>Settings–>Editor–>Live Templates 
 
         /**
@@ -29,3 +42,4 @@
 
         date:new date()
         time:new time()
+    参考文章：[IDEA类和方法注释模板设置（非常详细）](https://blog.csdn.net/xiaoliulang0324/article/details/79030752)

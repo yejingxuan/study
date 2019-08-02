@@ -1,5 +1,10 @@
 # CSDN-markdown编辑器 使用示例
 
+
+参考文章
+> [md高级语法](https://www.toutiao.com/i6697806006535062029/)  
+[Markdown，你只需要掌握这几个](https://www.cnblogs.com/jpfss/articles/6567686.html)
+
 本Markdown编辑器使用[StackEdit][6]修改而来，用它写博客，将会带来全新的体验哦：
 
 - **Markdown和扩展Markdown简洁的语法**
