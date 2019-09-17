@@ -1,12 +1,23 @@
 # 分布式ID生成
 
-> 参考文章 [七种分布式集群唯一ID生成方案](https://www.toutiao.com/i6694025353775546893/)
-
 [TOC]
 
 
-## Twitter的snowflake算法
+## 分布式id实现分案对比
 
+|名称|唯一性|性能|是否有序|内存占用|复杂程度|
+|----|---|----|----|----|----|
+|数据库自增主键|顺序id,数据库唯一|性能依赖数据库,性能较弱|有序|自然系列，较小|一般|
+|UUID方案|系统唯一|代码生成，性能强|没有排序，无法保证趋势递增|36位字符串存储空间比较大，如果是海量数据库，就需要考虑存储量的问题。|简单|
+|UUID to Int64|系统唯一|代码生成，性能强|有序|同UUID|简单|
+|Redis生成唯一ID|顺序id,数据库唯一|基于内存，性能强|有序|自然系列，较小|复杂|
+|zookeeper生成|多步调用API，需要考虑使用分布式锁|需要考虑分布式锁，性能较差|有序|较小|复杂|
+|MongoDB的ObjectId方案|系统唯一|基于内存，性能强|有序|较小|复杂|
+|snowflake算法|系统唯一|代码生成，性能强|在单机上是递增的，但是由于涉及到分布式环境，每台机器上的时钟不可能完全同步，也许有时候也会出现不是全局递增的情况。|long型id，内存较小|简单|
+
+## snowflake算法
+
+实现代码
 ```java
 public class SnowFlake {
 
@@ -95,18 +106,18 @@ public class SnowFlake {
         return System.currentTimeMillis();
     }
 
-    public static void main(String[] args) {
-        SnowFlake snowFlake = new SnowFlake(2, 3);
-
-        long start = System.currentTimeMillis();
-        for (int i = 0; i < 1000000; i++) {
-            System.out.println(snowFlake.nextId());
-        }
-
-        System.out.println(System.currentTimeMillis() - start);
-
-
-    }
 }
+```
 
+调用方式
+```java
+public static void main(String[] args) {
+    SnowFlake snowFlake = new SnowFlake(2, 3);
+
+    long start = System.currentTimeMillis();
+    for (int i = 0; i < 1000000; i++) {
+        System.out.println(snowFlake.nextId());
+    }
+    System.out.println(System.currentTimeMillis() - start);
+}
 ```
