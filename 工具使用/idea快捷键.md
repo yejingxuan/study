@@ -19,9 +19,9 @@
 
 ---
 
-- 自动补全变量名称 : Ctrl + Alt + v
+- 自动补全变量名称 : ctrl + alt + v
 
-- 自动补全属性名称 : Ctrl + Alt + f
+- 自动补全属性名称 : ctrl + alt + f
 
 - 覆盖父类方法：ctrl + o
 
@@ -29,6 +29,9 @@
 
 - 转大小写：ctrl + shift + u
 
+- 返回上一步：ctrl+z
+
+- 前进一步：ctrl+shift+z
 
 ---
 

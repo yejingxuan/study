@@ -57,5 +57,6 @@
 - 每个模板的第一行声明编码字符集
 
     ```python
-    #-*- coding: utf-8 -*-
+    #!/usr/bin/env python
+    # encoding=utf-8
     ```
