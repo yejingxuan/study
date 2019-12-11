@@ -144,7 +144,7 @@
 
 - 拉取镜像
   ```shell
-  docker pull docker.io/elasticsearch:5.6.9
+  docker pull docker.io/elasticsearch:7.0.1
   ```
 
 - 创建容器编排文件docker-compose.yml
@@ -152,15 +152,17 @@
   version: '3'
   services:
     yjx-elasticsearch:
-      image: docker.io/elasticsearch:5.6.9
+      image: docker.io/elasticsearch:7.0.1
       ports:
         - "9200:9200"
         - "9300:9300"
       volumes:
         - /jxye/docker/elasticsearch/data:/usr/share/elasticsearch/data
+        - /home/jxye/docker-servers/elasticsearch7/plugins:/usr/share/elasticsearch/plugins
       environment:
         # 设置es占用的jvm内存大小
         ES_JAVA_OPTS: "-Xms256m -Xmx256m"
+        discovery.type: "single-node"
       container_name: yjx-elasticsearch
   ```
 
@@ -177,6 +179,14 @@
   ```shell
   docker logs --tail -f 容器id
   ```
+- 常见问题
+    ```
+    StartupException: ElasticsearchException[failed to bind service];
+    ```
+    解决方案：对外挂的目录执行可读写权限
+    ```shell
+    chmod 777 data/
+    ```
 
 
 - 附加：使用docker run 直接启动容器的方法

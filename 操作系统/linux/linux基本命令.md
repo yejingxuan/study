@@ -14,3 +14,8 @@
 
 - netstat -apn|grep 8080
     ：查看某个端口占用的进程信息
+
+## 网络相关
+
+- ping IP
+- ping IP PORT

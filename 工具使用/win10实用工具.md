@@ -7,3 +7,6 @@
 
 
 ## 三、批量粘贴板：ditto
+
+
+## 四、屏幕录制成gif：screentogif

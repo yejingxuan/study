@@ -1,7 +1,41 @@
 # docker入门教程
 
+- [docker入门教程](#docker%e5%85%a5%e9%97%a8%e6%95%99%e7%a8%8b)
+  - [一、docker基础命令](#%e4%b8%80docker%e5%9f%ba%e7%a1%80%e5%91%bd%e4%bb%a4)
+  - [二、构建镜像](#%e4%ba%8c%e6%9e%84%e5%bb%ba%e9%95%9c%e5%83%8f)
+    - [构建镜像有三种方式](#%e6%9e%84%e5%bb%ba%e9%95%9c%e5%83%8f%e6%9c%89%e4%b8%89%e7%a7%8d%e6%96%b9%e5%bc%8f)
+    - [2.1、Dockerfile文件编写(把jar包制作成镜像)](#21dockerfile%e6%96%87%e4%bb%b6%e7%bc%96%e5%86%99%e6%8a%8ajar%e5%8c%85%e5%88%b6%e4%bd%9c%e6%88%90%e9%95%9c%e5%83%8f)
+    - [2.2、把tar包中的镜像导入docker中](#22%e6%8a%8atar%e5%8c%85%e4%b8%ad%e7%9a%84%e9%95%9c%e5%83%8f%e5%af%bc%e5%85%a5docker%e4%b8%ad)
+  - [三、扩展](#%e4%b8%89%e6%89%a9%e5%b1%95)
+    - [3.1、替换容器里的jar包](#31%e6%9b%bf%e6%8d%a2%e5%ae%b9%e5%99%a8%e9%87%8c%e7%9a%84jar%e5%8c%85)
+    - [3.2、查看容器日志](#32%e6%9f%a5%e7%9c%8b%e5%ae%b9%e5%99%a8%e6%97%a5%e5%bf%97)
+    - [3.3、目录挂载](#33%e7%9b%ae%e5%bd%95%e6%8c%82%e8%bd%bd)
+    - [3.4、一个运行中的Docker容器怎么修改执行run命令时的环境变量](#34%e4%b8%80%e4%b8%aa%e8%bf%90%e8%a1%8c%e4%b8%ad%e7%9a%84docker%e5%ae%b9%e5%99%a8%e6%80%8e%e4%b9%88%e4%bf%ae%e6%94%b9%e6%89%a7%e8%a1%8crun%e5%91%bd%e4%bb%a4%e6%97%b6%e7%9a%84%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f)
 
 ## 一、docker基础命令
+
+- docker安装
+    ```shell
+    # 1、更新yum源
+    yum clean all
+    yum update
+
+    # 2、yum安装docker
+    yum install docker![20191211142205.png](https://i.loli.net/2019/12/11/vDUHKVcE3RzIN4A.png)
+
+    # 3、启动并加入开机启动
+    systemctl start docker
+    systemctl enable docker
+    
+    # 4、验证安装是否成功(有client和service两部分表示docker安装启动都成功了)
+    docker version
+
+    # 5、安装docker-compose
+    curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    
+    chmod +x /usr/local/bin/docker-compose
+
+    ```
 
 - docker服务启动命令
     ```
