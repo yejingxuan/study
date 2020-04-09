@@ -1,0 +1,113 @@
+{
+    "root": {
+        "data": {
+            "id": "c1216x44aa00",
+            "created": 1583323087838,
+            "text": "GSP相关服务"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "c12177np2jc0",
+                    "created": 1583323110789,
+                    "text": "seaweed-master",
+                    "layout": null
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "c12188icmow0",
+                            "created": 1583323191007,
+                            "text": "seaweed主服务，是一个可集群的服务。但同一时间只会有一个Master生效。\n可以自动切换Master一个Master挂掉之后，剩下的Master会自动选主。",
+                            "layout": null
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "c121788crkg0",
+                    "created": 1583323112039,
+                    "text": "seaweed-volume",
+                    "layout": null
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "c1218mbfum80",
+                            "created": 1583323221064,
+                            "text": "seaweed卷服务，是一系列平等的服务，统一由Master进行管理，\n一个Volume Server挂掉并不会影响其它的VolumeServe",
+                            "layout": null
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "c12178vzpz40",
+                    "created": 1583323113468,
+                    "text": "seaweed-filer",
+                    "layout": null
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "c1218vba9ts0",
+                            "created": 1583323240646,
+                            "text": "提供AWS S3接口，所有的数据存储在数据库中（Cassandra）",
+                            "layout": null
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "c1217nqvkz40",
+                    "created": 1583323145810,
+                    "text": "cassandra",
+                    "layout": null,
+                    "layout_right_offset": {
+                        "x": 0,
+                        "y": 5
+                    }
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "c1218yjxxvk0",
+                            "created": 1583323247700,
+                            "text": "使用的是标准的数据库，本身支持集群和高可用",
+                            "layout": null
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "c1217rteafc0",
+                    "created": 1583323154670,
+                    "text": "redis-cache",
+                    "layout": null
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "c121915x1j40",
+                            "created": 1583323253382,
+                            "text": "使用的是标准的Redis作为缓存，本身支持集群和高可用，如果Redis出现问题，\n并不影响整体系统的功能。当前的版本，存在会加快读取性能。",
+                            "layout": null
+                        },
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "right",
+    "theme": "classic-compact",
+    "version": "1.4.43"
+}
