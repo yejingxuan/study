@@ -1,0 +1,235 @@
+{
+    "root": {
+        "data": {
+            "id": "bz98l7lj8go0",
+            "created": 1576742558343,
+            "text": "算法概述",
+            "font-family": "微软雅黑,Microsoft YaHei",
+            "font-weight": "bold",
+            "expandState": "expand"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "bz98leaolhc0",
+                    "created": 1576742572924,
+                    "text": "时间复杂度",
+                    "layout_mind_offset": {
+                        "x": 48,
+                        "y": -95
+                    },
+                    "layout": null,
+                    "font-family": "微软雅黑,Microsoft YaHei",
+                    "font-weight": "bold",
+                    "expandState": "expand"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "bz98m9bvk7s0",
+                            "created": 1576742640477,
+                            "text": "直白地讲， 时间复杂度就是把程序的相对执行时间函数T(n)简化   \n因为渐进时间复杂度用大写O来表示， 所以也被称为大O表示法，\n记作T(n)=O(f(n))",
+                            "priority": null,
+                            "layout": null,
+                            "font-family": "微软雅黑,Microsoft YaHei",
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "bz98nms3k9c0",
+                                    "created": 1576742748120,
+                                    "text": "1. T(n) = 2 对应 T(n)=O(1)",
+                                    "layout": null,
+                                    "font-family": "微软雅黑,Microsoft YaHei",
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bz98noiiprc0",
+                                    "created": 1576742751894,
+                                    "text": "2. T(n) = 3n 对应 T(n)=O(n)",
+                                    "layout": null,
+                                    "font-family": "微软雅黑,Microsoft YaHei",
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bz98o0snaa00",
+                                    "created": 1576742778628,
+                                    "text": "3. T(n) = 0.5n2 + 0.5n 对应 T(n) =O(n2)",
+                                    "layout": null,
+                                    "font-family": "微软雅黑,Microsoft YaHei",
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bz98o8801340",
+                                    "created": 1576742794794,
+                                    "text": "4. T(n) = 5logn 对应 T(n) =O(logn)",
+                                    "layout": null,
+                                    "font-family": "微软雅黑,Microsoft YaHei",
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bz98p3xvcd40",
+                                    "created": 1576742863838,
+                                    "text": "O(1)<O(logn)<O(n)<O(n2)",
+                                    "layout": null,
+                                    "font-family": "微软雅黑,Microsoft YaHei",
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "bz98mar8j8w0",
+                            "created": 1576742643582,
+                            "text": "如何推导出时间复杂度呢？ 有如下几个原则。",
+                            "priority": null,
+                            "layout": null,
+                            "font-family": "微软雅黑,Microsoft YaHei",
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "bz98q0v64ps0",
+                                    "created": 1576742935509,
+                                    "text": "如果运行时间是常数量级， 则用常数1表示",
+                                    "layout": null,
+                                    "font-family": "微软雅黑,Microsoft YaHei",
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bz98q2igchk0",
+                                    "created": 1576742939094,
+                                    "text": "只保留时间函数中的最高阶项",
+                                    "layout": null,
+                                    "font-family": "微软雅黑,Microsoft YaHei",
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bz98q3yude80",
+                                    "created": 1576742942261,
+                                    "text": "如果最高阶项存在， 则省去最高阶项前面的系数",
+                                    "layout": null,
+                                    "font-family": "微软雅黑,Microsoft YaHei",
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "bz98lf93ck00",
+                    "created": 1576742575005,
+                    "text": "空间复杂度",
+                    "layout_mind_offset": {
+                        "x": 452,
+                        "y": 88
+                    },
+                    "layout": null,
+                    "font-family": "微软雅黑,Microsoft YaHei",
+                    "font-weight": "bold",
+                    "expandState": "expand"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "bz98mbrpogw0",
+                            "created": 1576742645788,
+                            "text": "空间复杂度是对一个算法在运行过程中临时占用存储空间大小的\n量度， 它同样使用了大O表示法，记作S(n)=O(f(n))。  ",
+                            "layout": null,
+                            "font-family": "微软雅黑,Microsoft YaHei",
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "c1iq93kwpts0",
+                                    "created": 1585018745696,
+                                    "text": "1. 常量空间： 当算法的存储空间大小固定， 和输入规模没有直接的关系时， 空间复杂度记作O(1) ",
+                                    "expandState": "expand",
+                                    "layout": null
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "c1iqa4rtum00",
+                                    "created": 1585018826656,
+                                    "text": "2. 线性空间 ：当算法分配的空间是一个线性的集合（如数组）并且集合大小和输入规模n成正比\n时， 空间复杂度记作O(n)  ",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "c1iqau4cdkg0",
+                                    "created": 1585018881832,
+                                    "text": "3. 二维空间：当算法分配的空间是一个二维数组集合， 并且集合的长度和宽度都与输入规模n成正\n比时， 空间复杂度记作O(n2)。  ",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "c1iqc01dy4w0",
+                                    "created": 1585018973078,
+                                    "text": "4. 递归空间：执行递归操作所需要的内存空间和递归的深度成正比。 纯粹的递归操作的空间复杂度也是线性\n的， 如果递归的深度是n， 那么空间复杂度就是O(n)。  ",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "c1iq8fgfq880",
+                                    "created": 1585018693183,
+                                    "text": "常见的空间复杂度按照从低到高的顺序，O(1)< O(n)< O(n2)",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "c1iwhf39csg0",
+                    "created": 1585036324323,
+                    "text": "时间与空间的取舍"
+                },
+                "children": []
+            }
+        ]
+    },
+    "template": "right",
+    "theme": "snow-compact",
+    "version": "1.4.43"
+}

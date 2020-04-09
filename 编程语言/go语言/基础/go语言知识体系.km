@@ -1,0 +1,469 @@
+{
+    "root": {
+        "data": {
+            "id": "bzkzf8o4hqw0",
+            "created": 1577935419982,
+            "text": "go语言知识体系",
+            "expandState": "expand"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "bzkzg14rwow0",
+                    "created": 1577935481939,
+                    "text": "语言结构",
+                    "expandState": "expand",
+                    "layout": null
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "bzkzg4nl7ow0",
+                            "created": 1577935489607,
+                            "text": "包声明\n引入包\n函数\n变量\n语句 & 表达式\n注释",
+                            "layout": null,
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "bzkzgqtmg280",
+                                    "created": 1577935537861,
+                                    "text": "package main\nimport \"fmt\"\nfunc main() {\n   /* 这是我的第一个简单的程序 */\n   fmt.Println(\"Hello, World!\")\n}",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "bzkzg5neqxk0",
+                            "created": 1577935491773,
+                            "text": "执行方式",
+                            "layout": null,
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "bzkzh37gsa00",
+                                    "created": 1577935564819,
+                                    "text": "直接运行：go run hello.go",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bzkzh86f9nk0",
+                                    "created": 1577935575640,
+                                    "text": "打包成二进制文件运行：",
+                                    "expandState": "expand",
+                                    "layout": null
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "bzkzhxmcu340",
+                                            "created": 1577935631023,
+                                            "text": "go build hello.go ",
+                                            "layout": null,
+                                            "expandState": "expand"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "bzkzg1ujms80",
+                    "created": 1577935483497,
+                    "text": "基础语法",
+                    "layout": null,
+                    "expandState": "expand"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "bzkzib2934o0",
+                            "created": 1577935660283,
+                            "text": "注释",
+                            "layout": null,
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "bzkznwbtkko0",
+                                    "created": 1577936098394,
+                                    "text": "// 单行注释\n/*Author by 菜鸟教程\n 我是多行注释\n */",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "bzkzmr25npc0",
+                            "created": 1577936008562,
+                            "text": "字符串连接",
+                            "layout": null,
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "bzkzn0rbrcg0",
+                                    "created": 1577936029675,
+                                    "text": "fmt.Println(\"Google\" + \"Runoob\")",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "bzkzppobje80",
+                            "created": 1577936240641,
+                            "text": "变量声明",
+                            "layout": null,
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "bzkzpx9t6s00",
+                                    "created": 1577936257178,
+                                    "text": "var identifier type",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bzkzq0m42zk0",
+                                    "created": 1577936264452,
+                                    "text": "var identifier1, identifier2 type\nvar identifier1, identifier2 int = 1,2",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bzkzq9vt88o0",
+                                    "created": 1577936284630,
+                                    "text": "var v_name = value\n f := \"Runoob\"\nvname1, vname2, vname3 := v1, v2, v3",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bzkzrg4ozuo0",
+                                    "created": 1577936376592,
+                                    "text": "_,numb,strs := numbers() //只获取函数返回值的后两个",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "bzkzuqvnymg0",
+                            "created": 1577936635083,
+                            "text": "iota 用法",
+                            "layout": null,
+                            "expandState": "expand"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "bzkzg2sxvbs0",
+                    "created": 1577935485577,
+                    "text": "并发 ",
+                    "layout": null,
+                    "expandState": "expand"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "bzlstsgz85c0",
+                            "created": 1578018372371,
+                            "text": "Go 语言支持并发，我们只需要通过 go 关键字来开启 goroutine 即可。\ngoroutine 是轻量级线程，goroutine 的调度是由 Golang 运行时进行管理的。"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "bzlsvdi5mm80",
+                                    "created": 1578018496519,
+                                    "text": "func main() {\n\tgo say(\"world\")\n\t    say(\"hello\")\n}"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "bzlsuafc7eo0",
+                            "created": 1578018411454,
+                            "text": "通道（channel）"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "bzlsuingmio0",
+                                    "created": 1578018429360,
+                                    "text": "通道（channel）是用来传递数据的一个数据结构。\n通道可用于两个 goroutine 之间通过传递一个指定类型的值来同步运行和通讯。\n操作符 <- 用于指定通道的方向，发送或接收。如果未指定方向，则为双向通道。"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "bzkzg3b2nc00",
+                    "created": 1577935486673,
+                    "text": "数据类型",
+                    "layout": null,
+                    "expandState": "expand"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "bzkzo08dyrs0",
+                            "created": 1577936106894,
+                            "text": "1、布尔型\n2、数字类型\n3、字符串类型:\n4、派生类型:",
+                            "layout": null,
+                            "font-weight": "bold",
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "bzkzsk07m000",
+                                    "created": 1577936463392,
+                                    "text": "(a) 指针类型（Pointer）\n(b) 数组类型\n(c) 结构化类型(struct)\n(d) Channel 类型\n(e) 函数类型\n(f) 切片类型\n(g) 接口类型（interface）\n(h) Map 类型",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "bzl4cuog4940",
+                            "created": 1577949338348,
+                            "text": "数组",
+                            "layout": null,
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "bzl4pyhlcjc0",
+                                    "created": 1577950365375,
+                                    "text": "数组声明：var variable_name [SIZE] variable_type\n例：var balance [10] float32",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bzl4qc4wly80",
+                                    "created": 1577950395083,
+                                    "text": "数组初始化：var balance = [5]float32{1000.0, 2.0, 3.4, 7.0, 50.0}\nvar balance = [...]float32{1000.0, 2.0, 3.4, 7.0, 50.0}",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "bzl65lr3f7s0",
+                            "created": 1577954412588,
+                            "text": "切片（动态数组）",
+                            "layout": null,
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "bzl6uxdte740",
+                                    "created": 1577956397010,
+                                    "text": "创建切片：var identifier []type\nslice1 := make( []type, len )",
+                                    "layout": null
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "bzls9yvunx40",
+                            "created": 1578016819048,
+                            "text": "Map",
+                            "layout": null
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "bzkzg3w0tlk0",
+                    "created": 1577935487940,
+                    "text": "函数",
+                    "layout": null,
+                    "expandState": "expand"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "bzl2ma5tszk0",
+                            "created": 1577944435108,
+                            "text": "函数定义\nfunc function_name( [parameter list] ) [return_types] { \n   函数体\n}",
+                            "layout": null,
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "bzl2mmaxhjc0",
+                                    "created": 1577944461538,
+                                    "text": "func swap(x, y string) (string, string) {\n   return y, x \n} ",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bzl2rx944qo0",
+                                    "created": 1577944877194,
+                                    "text": "func max(num1, num2 int) int {\n   result = num2\n   return result\n}",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "bzl2sz6q5ao0",
+                            "created": 1577944959767,
+                            "text": "Go 语言默认使用的是值传递，即在调用过程中不会影响到实际参数。",
+                            "layout": null,
+                            "expandState": "expand"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "bzlsrvxqmyw0",
+                            "created": 1578018223187,
+                            "text": "指针",
+                            "layout": null
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "bzkzodbazmw0",
+                    "created": 1577936135368,
+                    "text": "构成",
+                    "layout": null,
+                    "expandState": "expand"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "bzlsaot79y80",
+                            "created": 1578016875484,
+                            "text": "结构体",
+                            "layout": null
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "bzlsbso6ks00",
+                                    "created": 1578016962252,
+                                    "text": "type Books struct {\n   title string\n}",
+                                    "layout": null
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bzlscn7aj6g0",
+                                    "created": 1578017028711,
+                                    "text": "// 创建一个新的结构体\nfmt.Println(Books{\"Go 语言\"})\n// 也可以使用 key => value 格式\nfmt.Println(Books{title: \"Go 语言\"})\n// 忽略的字段为 0 或 空",
+                                    "layout": null
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "bzlsaphgvhc0",
+                            "created": 1578016876952,
+                            "text": "接口",
+                            "layout": null
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "bzlsso548kg0",
+                                    "created": 1578018284583,
+                                    "text": "/* 定义接口 */\ntype interface_name interface {\n   method_name1 [return_type]\n}",
+                                    "layout": null
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "bzlsrtlmk680",
+                            "created": 1578018218101,
+                            "text": "topic",
+                            "layout": null
+                        },
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "default",
+    "theme": "classic",
+    "version": "1.4.43"
+}

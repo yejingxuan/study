@@ -1,0 +1,139 @@
+{
+    "root": {
+        "data": {
+            "id": "c12kps3578o0",
+            "created": 1583378166902,
+            "text": "MainTopic"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "c12kqekquu80",
+                    "created": 1583378215856,
+                    "text": "-ip : 指定ip地址（默认是localhost"
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "c12krqjwci80",
+                    "created": 1583378320290,
+                    "text": "-publicUrl：指定对外访问的url"
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "c12kpu2nmw00",
+                    "created": 1583378171226,
+                    "text": "-port: 指定端口号(默认8080)",
+                    "layout": null
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "c12kpz33r6g0",
+                    "created": 1583378182137,
+                    "text": "-idleTimeout: 空闲连接时间30s",
+                    "layout": null
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "c12kq3efeds0",
+                    "created": 1583378191529,
+                    "text": "-max：最大volume个数(默认7个)",
+                    "layout": null
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "c12kq4o1gt40",
+                    "created": 1583378194287,
+                    "text": "-mserver:  master服务ip(默认localhost:9333)",
+                    "layout": null
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "c12kq5ra2o80",
+                    "created": 1583378196660,
+                    "text": "-rack：当前卷服务器的机架名称",
+                    "layout_mind_offset": {
+                        "x": 382,
+                        "y": 252
+                    },
+                    "layout": null
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "c12kqbqxyfs0",
+                    "created": 1583378209700,
+                    "text": "-dataCenter: 当前volume的数据中心名称",
+                    "layout_mind_offset": {
+                        "x": 446,
+                        "y": 252
+                    }
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "c12kqc9y5qo0",
+                    "created": 1583378210849,
+                    "text": "–ip：指定master节点ip",
+                    "layout_mind_offset": {
+                        "x": -11,
+                        "y": -33
+                    }
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "c12kqctc1cw0",
+                    "created": 1583378212022,
+                    "text": "-peers: 指定多个节点的ip地址 ",
+                    "layout_mind_offset": {
+                        "x": -8,
+                        "y": -26
+                    }
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "c12kqde2yn40",
+                    "created": 1583378213276,
+                    "text": "-volumeSizeLimitMB :指定volume的大小（最大32G）",
+                    "layout_mind_offset": {
+                        "x": -8,
+                        "y": -23
+                    }
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "c12kqe055h40",
+                    "created": 1583378214610,
+                    "text": "-defaultReplication:指定备份机制，默认不备份",
+                    "layout_mind_offset": {
+                        "x": -14,
+                        "y": -17
+                    }
+                },
+                "children": []
+            }
+        ]
+    },
+    "template": "default",
+    "theme": "fresh-red-compat",
+    "version": "1.4.43"
+}

@@ -1,0 +1,96 @@
+{
+    "root": {
+        "data": {
+            "id": "c1iqjrx4cdc0",
+            "created": 1585019582319,
+            "text": "基础数据结构"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "c1iqk1dix540",
+                    "created": 1585019602902,
+                    "text": "数组",
+                    "layout": null
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "c1iqkko1wqg0",
+                            "created": 1585019644898,
+                            "text": "数组拥有非常高效的随机访问能力， 只要给出下标， 就可以用常\n量时间找到对应元素。 有一种高效查找元素的算法叫作二分查找， 就是利用了数组\n的这个优势。  ",
+                            "layout": null
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "c1iqkq2dzqo0",
+                            "created": 1585019656648,
+                            "text": "至于数组的劣势， 体现在插入和删除元素方面。 由于数组元素连\n续紧密地存储在内存中， 插入、 删除元素都会导致大量元素被迫移动， 影响效率  ",
+                            "layout": null
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "c1iqkuy6hc80",
+                            "created": 1585019667278,
+                            "text": "总的来说， 数组所适合的是读操作多、 写操作少的场景  ",
+                            "layout": null
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "c1iqk1zsbk00",
+                    "created": 1585019604248,
+                    "text": "链表",
+                    "layout": null
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "c1iqlkmwj940",
+                            "created": 1585019723192,
+                            "text": "链表的优势在于能够灵活地进行插入和删除操作， 如果\n需要在尾部频繁插入、 删除元素， 用链表更合适一些  ",
+                            "layout": null
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "c1iqm5vu5y80",
+                    "created": 1585019769445,
+                    "text": "栈和队列",
+                    "layout": null
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "c1iqmgm3bf40",
+                    "created": 1585019792800,
+                    "text": "散列表",
+                    "layout": null
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "c1iqmub7fbk0",
+                    "created": 1585019822617,
+                    "text": "树"
+                },
+                "children": []
+            }
+        ]
+    },
+    "template": "right",
+    "theme": "snow-compact",
+    "version": "1.4.43"
+}
