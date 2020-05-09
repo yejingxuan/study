@@ -25,6 +25,11 @@ standaloan 是redis单机模式，所有服务连接一台redis服务，该模�
 ### replication（主从模式）
 Redis 多副本，采用主从（replication）部署结构，相较于单副本而言最大的特点就是主从实例间数据实时同步，并且提供数据持久化和备份策略。主从实例部署在不同的物理服务器上，根据公司的基础环境配置，可以实现同时对外提供服务和读写分离策略。
 
+
+- 一主多从的结构部署，主节点提供读写操作，从节点提供读的操作，主节点数据自动同步至从节点。可以有效的解决读多写少的情景，把读请求均摊到从节点上。
+
+- 缺点：不能自动进行故障转移，主备切换，需要手动操作
+
 ![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20200409112748.png)
 
 优点：
@@ -49,6 +54,9 @@ Redis 多副本，采用主从（replication）部署结构，相较于单副本
 ### sentinel（哨兵模式）
 
 Redis Sentinel是社区版本推出的原生高可用解决方案，Redis Sentinel部署架构主要包括两部分：Redis Sentinel集群和Redis数据集群，其中Redis Sentinel集群是由若干Sentinel节点组成的分布式集群。可以实现故障发现、故障自动转移、配置中心和客户端通知。Redis Sentinel的节点数量要满足2n+1（n>=1）的奇数个。
+
+- 一主多从的模式+哨兵集群。哨兵提供故障转移，主备切换的工作。主节点做读写处理，从节点只做数据备份的工作。
+- 缺点：单个主节点性能压力大；从节点不能处理请求，浪费资源
 
 ![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20200409113450.png)
 
@@ -80,6 +88,8 @@ Redis Cluster 采用虚拟槽分区，所有的键根据哈希函数映射到 0�
 
 
 ![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20200409113727.png)
+
+- 多主多从，无中心架构，一个主节点对应一个从节点。采用一致性HASH算法，来使数据均匀分布在主节点上。主节点提供读写操作，从节点只做数据备份和故障转移。
 
 优点：
 
