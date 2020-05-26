@@ -188,13 +188,24 @@
 
 - __G1垃圾回收器__
   - Garbage first 垃圾收集器是目前垃圾收集器理论发展的最前沿成果，相比与 CMS 收集器， G1 收集器两个最突出的改进是
+  - 堆内存是一个被拆分成很多固定大小的内存区域。每个区域的大小是JVM启动时决定的。JVM通常会化成出2000个区域，每个区域大小是1 ~ 32Mb。
+    ![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20200526161844.png)
+  - 活着的对象会被转移（复制/移动）到另一个或多个suvivor区域。如果年龄到了阈值，就会被分配到Old区域。
+    ![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20200526161925.png)
+
+  - 总结一下，G1的Young GC的特点：
+    - 堆被拆分成多个区域。
+    - 新生代有一些并不连续的区域组成。这样可以很容易的扩容或收缩新生代的大小。
+    - Young GC会Stop the World。
+    - Young GC是多线程并行的。
+    - 活着的对象会被复制移动到suvior或者old区域。
 
 
 
 ## 参考文章
 - [JVM性能调优实践——G1 垃圾收集器分析、调优篇](https://cloud.tencent.com/developer/article/1498990)
 - [Java虚拟机（JVM）你只要看这一篇就够了！](https://www.cnblogs.com/aishangJava/p/9541920.html)
-
+- [【浅度渣文】JVM——G1收集器](https://juejin.im/post/5bc6d4266fb9a05d151cd392)
 
 
 
