@@ -1,9 +1,13 @@
 
 ## TODO LIST
 
+- [ ] JVM
+  - [x] 破坏双亲委派
+
 - [ ] 多线程
-  - [ ] threadlocal的内存泄露问题
+  - [x] threadlocal的内存泄露问题
   - [ ] 线程状态转换加深印象
+  - [ ] 锁升级
 
 
 - [ ] DB数据库
