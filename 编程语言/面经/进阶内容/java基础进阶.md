@@ -7,7 +7,21 @@
     - [1.3、Map](#13map)
     - [1.4、List-set-Map比较](#14list-set-map比较)
   - [二、java类](#二java类)
-  - [三、java关键字](#三java关键字)
+    - [2.1、java内部类](#21java内部类)
+    - [2.2、抽象类和接口的区别](#22抽象类和接口的区别)
+    - [2.3、为什么java不能多继承](#23为什么java不能多继承)
+  - [三、java概念](#三java概念)
+    - [3.1、深拷贝 && 浅拷贝 && 延迟拷贝](#31深拷贝--浅拷贝--延迟拷贝)
+    - [3.2、序列化](#32序列化)
+    - [3.3、java是值传递还是引用传递？](#33java是值传递还是引用传递)
+  - [四、spring](#四spring)
+    - [4.1、IOC](#41ioc)
+    - [4.2、AOP](#42aop)
+    - [4.3、spring bean容器](#43spring-bean容器)
+    - [4.4、spring依赖注入方式](#44spring依赖注入方式)
+    - [4.5、动态代理](#45动态代理)
+    - [4.6、spring事务](#46spring事务)
+    - [4.7、springMVC](#47springmvc)
   - [参考文章](#参考文章)
 
 
@@ -101,8 +115,10 @@
 
 - __HashMap__
   - 实现原理
-    - 底层基于数组+链表来实现，链表元素超过8个后转为红黑树
+    - 底层基于数组+链表来实现，链表元素超过8个后转为红黑树，红黑树的时间复杂度O（logn）
   - 特性
+    - Hash算法优化：hashcode计算后右移16位，并和原始hashcode值进行异或运算，减少Hash碰撞
+    - 寻址算法优化：(n-1) & hash  ==== hash取模的效果和 hash&(n-1)结果是一样的，但是性能高一些。
 
   - 扩容原理
 
@@ -114,7 +130,8 @@
   - 实现原理
     - 基本同HashMap，将HashMap差分为多个
   - 特性
-    - 采用分段锁来保证线程安全，默认采用八个HashMap分段，支持8个线程并发
+    - 1.8之前采用分段锁来保证线程安全，默认采用八个HashMap分段，支持8个线程并发
+    - 1.8之后不再使用分段的思想，还是使用一个数组，对数组中的每个数组位置进行CAS操作，对数组上的链表元素进行synchronize加锁处理
 
 - __TreeMap__
   - 原理
@@ -130,30 +147,204 @@
 
 ## 二、java类
 
+### 2.1、java内部类
+
+- __内部类的作用__
+  - 内部类方法可以访问该类定义所在作用域中的数据，包括被 private 修饰的私有数据
+  - 内部类可以对同一包中的其他类隐藏起来
+  - 内部类可以实现 java 单继承的缺陷
+  - 当我们想要定义一个回调函数却不想写大量代码的时候我们可以选择使用匿名内部类来实现
+
+- __java从语法上来讲把内部类分为了__
+  1. 成员内部类
+     - 成员内部类就像一个实例变量。它可以访问它的外部类的所有成员变量和方法，不管是静态的还是非静态的都可以。
+     - 生成方式
+        ```java
+        // 创建成员内部类的对象
+        // 需要先创建外部类的实例
+        MemberInner.Inner2 inner = new MemberInner().new Inner2();
+        ```
+  2. 静态内部类
+     - 只能使用 外部类的静态成员和静态方法
+     - 生成静态内部类对象的方式为：
+        ```java
+        OuterClass.InnerClass inner = new OuterClass.InnerClass()
+        ```
+    
+  3. 局部内部类
+     - 只能访问方法中定义的final类型的局部变量。局部内部类在方法中定义，所以只能在方法中使用，即只能在方法当中生成局部内部类的实例并且调用其方法。
+  
+  4. 匿名内部类
+     - 匿名内部类隐式地继承了一个父类或者实现了一个接口,匿名内部类使用得比较多，通常是作为一个方法参数
+        ```java
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }).run();
+        ```
+
+
+### 2.2、抽象类和接口的区别
+
+
+### 2.3、为什么java不能多继承
+- 防止多继承的时候子类调用父类方法的时候，出现多个父类都拥有该方法，不知道该调用哪个情况
+
+
+
+## 三、java概念
+
+### 3.1、深拷贝 && 浅拷贝 && 延迟拷贝
+- __浅拷贝__
+  - 浅拷贝是按位拷贝对象，它会创建一个新对象，这个对象有着原始对象属性值的一份精确拷贝。
+  - 如果属性是基本类型（如String int等等），拷贝的就是基本类型的值；如果属性是内存地址（引用类型），拷贝的就是内存地址 ，因此如果其中一个对象改变了这个地址，就会影响到另一个对象。
+  - __集合、数组的复制默认都是浅拷贝__
+
+- __深拷贝__
+  - 深拷贝会拷贝所有的属性,并拷贝属性指向的动态分配的内存。__当对象和它所引用的对象一起拷贝时即发生深拷贝__。深拷贝相比于浅拷贝速度较慢并且花销较大
+
+- __延迟拷贝__
+  - 当最开始拷贝一个对象时，会使用速度较快的浅拷贝，还会使用一个计数器来记录有多少对象共享这个数据。当程序想要修改原始的对象时，它会决定数据是否被共享（通过检查计数器）并根据需要进行深拷贝。
+  - 读取数据时进行浅拷贝，修改数据时进行浅拷贝。
+
+
+
+### 3.2、序列化
+
+- 可以序列化是干什么的?它将整个对象图写入到一个持久化存储文件中并且当需要的时候把它读取回来, 这意味着当你需要把它读取回来时你需要整个对象图的一个拷贝。这就是当你深拷贝一个对象时真正需要的东西。请注意，当你通过序列化进行深拷贝时，必须确保对象图中所有类都是可序列化的。
+
+
+
+### 3.3、java是值传递还是引用传递？
+
+- __值传递（pass by value）__
+  - 是指在调用函数时将实际参数复制一份传递到函数中，这样在函数中如果对参数进行修改，将不会影响到实际参数。
+
+- __引用传递（pass by reference）__
+  - 是指在调用函数时将实际参数的地址直接传递到函数中，那么在函数中对参数所进行的修改，将影响到实际参数。
+
+
+
+- 大部分的认知里，传递的参数如果是普通类型，那就是值传递，如果是对象，那就是引用传递。
+  ```java
+  public static void main(String[] args) {
+    ParamTest pt = new ParamTest();
+
+    User hollis = new User();
+    hollis.setName("Hollis");
+    hollis.setGender("Male");
+    pt.pass(hollis);
+    System.out.println("print in main , user is " + hollis);
+  }
+
+  public void pass(User user) {
+    user = new User();
+    user.setName("hollischuang");
+    user.setGender("Male");
+    System.out.println("print in pass , user is " + user);
+  }
+
+  //打印结果如下
+  print in pass , user is User{name='hollischuang', gender='Male'}
+  print in main , user is User{name='Hollis', gender='Male'}
+  ```
+
+- 所以上面的参数其实是值传递，只是浅拷贝的情况下把实参里对象引用的地址当做值传递给了形式参数。
+- 这里是把实际参数的引用的地址复制了一份，传递给了形式参数。所以，上面的参数其实是值传递，把实参对象引用的地址当做值传递给了形式参数。
 
 
 
 
+## 四、spring
+
+### 4.1、IOC
 
 
-## 三、java关键字
+### 4.2、AOP
 
 
+### 4.3、spring bean容器
+
+- __bean的生命周期__
+  - 创建->初始化->使用->销毁
+  1. 实例化bean：spring启动时根据配置和反射、动态代理来创建bean,
+  2. 设置对象属性（依赖注入）：去查找这个bean依赖了哪些bena,然后也创建出来，进行注入
+  3. 处理Aware接口：即把容器注入给bean,如果bean已经实现了ApplicationContextAware接口，spring容器会调用我们的bean的setApplicationContext(ApplicationContext)方法，传入spring的上下文，把spring容器传给这个bean
+  4. BeanPostProcessor：bean实例构建好了后，可以对bean进行一些自定义的处理，让Bean实现BeanPostProcessor接口
+  5. InitializingBean和init-method：执行配置的初始化方法
+  6. beanPostProcessor：接口会调用postProcessorAfterInitialization方法， 在bean初始化完了后执行，可以用于一些缓存技术。
+  7. disposableBean：当bean不再需要时，会经过清理阶段，如果bean实现了该接口，会调用他的destroy方法
+  8. destroy-method：如果配置了destroy-method可以在bean销毁后执行该方法。
 
 
+- __bean的作用域，通过scope属性来实现__
+  - singleton:单例模式
+    - 应用场景
+  - prototype:多例模式，为每次请求创建一个对象
+    - 应用场景：
+  - request：对每次网络请求创建一次对象
+  - session:对每个会话创建一次
+
+### 4.4、spring依赖注入方式
+
+- 构造函数注入
+  ```java
+  public class ServiceA{
+    private MyDao myDao;
+    public ServiceA(MyDao myDao){
+      this.myDao = myDao
+    }
+  }
+  ```
+
+- 构造函数注入
+  ```java
+  public class ServiceA{
+    private MyDao myDao;
+    public void setMyDao(MyDao myDao){
+      this.myDao = myDao
+    }
+  }
+  ```
 
 
+### 4.5、动态代理
 
+- JDK动态代理
+  - springAOP使用的就是JDK动态代理， jdk动态代理是在你的类有接口的时候来使用
 
+- cglib动态代理
+  - 当要代理的类没有接口时，AOP会使用cglib来生成动态代理。对代理的类生成子类，动态生成字节码，覆盖掉一些方法，在方法里加入增强代码
 
+### 4.6、spring事务
 
+- __spring事务流程__
+  - 通过@transaction注解，spring会使用AOP的思想，在方法执行之前开启事务，在执行完毕后，根据方法是否报错，来决定是回滚还是提交事务。
 
+- 事务传播机制
+  - __propagation_required__：spring默认设置————如果当前没有事务，就创建一个事务；如果当前存在事务，就加入该事务。
 
+  - __propagation_requires_new__：无论当前有没有事务，都会创建新事务
 
+  - __propagation_nested__：嵌套事务，外层事务回滚，则内层事务也会回滚，如果内层事务回滚，则只回滚内层事务
 
+  - propagation_supports：如果当前没有事务，就以非事务机制执行；如果当前存在事务，就加入该事务；
 
+  - propagation_mandatory：如果当前没有事务，就抛出异常；如果当前存在事务，就加入该事务；
+
+  - propagation_not_support：以非事务的方法执行，如果当前存在事务，就把当前事务挂起
+
+  - propagation_never：以非事务执行，存在事务就抛出异常
+
+### 4.7、springMVC
+![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20200530212411.png)
+
+![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20200530212641.png)
 
 
 ## 参考文章
 
 - [并发容器(二)—线程安全的List](https://blog.csdn.net/p_programmer/article/details/86027076)
+- [搞懂 JAVA 内部类](https://juejin.im/post/5a903ef96fb9a063435ef0c8)

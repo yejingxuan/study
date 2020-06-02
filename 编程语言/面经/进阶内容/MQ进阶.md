@@ -15,7 +15,12 @@
   - [四、MQ高可用](#四mq高可用)
     - [4.1、rabbitMQ高可用](#41rabbitmq高可用)
     - [4.2、kafka的高可用](#42kafka的高可用)
+    - [4.3、kafka为什么需要zookeeper](#43kafka为什么需要zookeeper)
   - [五、灾难恢复问题](#五灾难恢复问题)
+  - [六、性能问题](#六性能问题)
+    - [6.1、kafka为什么吞吐量大，速度快](#61kafka为什么吞吐量大速度快)
+  - [七、其他扯淡问题](#七其他扯淡问题)
+    - [7.1、kafka的存储结构](#71kafka的存储结构)
   - [参考文章](#参考文章)
 
 
@@ -192,8 +197,64 @@ kakfa是天然的分布式消息队列，kafka集群由多个 broker 组成，�
   - Kafka 会均匀地将一个 partition 的所有 replica 分布在不同的机器上，这样才可以提高容错性
 
 
+### 4.3、kafka为什么需要zookeeper
+- 管理所有的broker
+- 记录消息消费进度Offset记录
+- 生产者消费者负载均衡
+- 记录消息分区于消费者的关系，都是通过创建修改zookeeper上相应的节点实现
+
+
+
 ## 五、灾难恢复问题
+
+
+
+
+## 六、性能问题
+
+### 6.1、kafka为什么吞吐量大，速度快
+
+
+- __1. 顺序读写__
+  -  虽然Kafka是将消息记录持久化到本地磁盘中的，但是不管是内存还是磁盘，快或慢关键在于寻址的方式，磁盘分为顺序读写与随机读写，磁盘的顺序读写性能却很高，一般而言要高出磁盘随机读写三个数量级，一些情况下磁盘顺序读写性能甚至要高于内存随机读写。
+  -  Kafka的message是不断追加到本地磁盘文件末尾的，而不是随机的写入，这使得Kafka写入吞吐量得到了显著提升，每一个Partition其实都是一个文件 ，收到消息后Kafka会把数据插入到文件末尾
+  ![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20200529153956.png)
+  -  这种方法有一个缺陷—— 没有办法删除数据 ，所以Kafka是不会删除数据的，它会把所有的数据都保留下来，每个消费者（Consumer）对每个Topic都有一个offset用来表示 读取到了第几条数据 。
+  - 如果不删除硬盘肯定会被撑满，所以 __Kakfa提供了两种策略来删除数据。一是基于时间，二是基于partition文件大小__。具体配置可以参看它的配置文档。
+
+
+- __2. Page Cache__
+  - 为了优化读写性能，Kafka利用了操作系统本身的Page Cache。避免了Object消耗和GC问题
+  - 相比于使用JVM或in-memory cache等数据结构，利用操作系统的Page Cache更加简单可靠，操作系统层面的缓存利用率会更高，
+  - 操作系统本身也对于Page Cache做了大量优化，提供了 write-behind、read-ahead以及flush等多种机制。再者，即使服务进程重启，系统缓存依然不会消失
+
+
+- __3. 零拷贝__
+  - “零拷贝” 机制使用了sendfile方法， 允许操作系统将数据从Page Cache 直接发送到网络，只需要最后一步的copy操作将数据复制到 NIC 缓冲区， 这样避免重新复制数据
+  ![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20200529154950.png)
+  - 所谓“零拷贝”就是跳过“用户缓冲区”的拷贝，建立一个磁盘空间和内存的直接映射，数据不再复制到“用户态缓冲区
+
+- __4. 分区分段+索引__
+  -  kafka中的topic中的内容可以被分为多分partition存在,每个partition又分为多个段segment,所以每次操作都是针对一小部分做操作，很轻便，并且增加并行操作的能力
+  ![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20200529160243.png)
+
+
+- __5. 批量发送__
+  - 在向Kafka写入数据时，可以启用批次写入，这样可以避免在网络上频繁传输单个消息带来的延迟和带宽开销。假设网络带宽为10MB/S，一次性传输10MB的消息比传输1KB的消息10000万次显然要快得多
+
+
+- __6. 批量压缩__
+  - Kafka使用了批量压缩，将多个消息一起压缩，批量的消息可以通过压缩的形式传输并且在日志中也可以保持压缩格式，直到被消费者解压缩
+  - Kafka支持多种压缩协议，包括 __Gzip和Snappy压缩协议__
+  - 批量发送和数据压缩一起使用效果最好
+
+## 七、其他扯淡问题
+
+### 7.1、kafka的存储结构
+
+![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20200529161605.png)
 
 
 ## 参考文章
 - [中华石衫-如何保证消息队列的高可用？](https://github.com/shishan100/Java-Interview-Advanced/blob/master/docs/high-concurrency/how-to-ensure-high-availability-of-message-queues.md)
+- [Kafka为什么吞吐量大、速度快？](https://blog.csdn.net/kzadmxz/article/details/101576401)

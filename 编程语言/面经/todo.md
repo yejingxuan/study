@@ -3,11 +3,14 @@
 
 - [ ] JVM
   - [x] 破坏双亲委派
+  - [ ] 序列化
 
 - [ ] 多线程
   - [x] threadlocal的内存泄露问题
   - [x] 线程状态转换加深印象
   - [x] 锁升级
+  - [ ] CountDownLatch
+  - [ ] join
 
 
 - [ ] DB数据库
@@ -35,8 +38,11 @@
   - [ ] springcloud
   - [ ] zookeeper && eureka
   - [ ] Hystrix
+  - [ ] 分布式下接口幂等性
 
 
 - [ ] 开发框架
   - [ ] spring
   - [ ] mybatis
+  - [ ] springboot
+  - [ ] springboot-starter
