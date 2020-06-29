@@ -4,13 +4,14 @@
 - [ ] JVM
   - [x] 破坏双亲委派
   - [ ] 序列化
+  - [x] 逃逸分析
 
 - [ ] 多线程
   - [x] threadlocal的内存泄露问题
   - [x] 线程状态转换加深印象
   - [x] 锁升级
-  - [ ] CountDownLatch
-  - [ ] join
+  - [x] CountDownLatch
+  - [x] join
 
 
 - [ ] DB数据库
@@ -18,7 +19,7 @@
   - [x] 锁的用法和死锁解决
   - [x] 索引的类型、原理
   - [x] MVCC总结
-  - [ ] 双写一致性问题加深印象
+  - [x] 双写一致性问题加深印象
 
 
 - [ ] redis缓存
@@ -45,4 +46,7 @@
   - [ ] spring
   - [ ] mybatis
   - [ ] springboot
-  - [ ] springboot-starter
+  - [x] springboot-starter
+
+- [ ] 系统设计
+  - [ ] 领域驱动设计（Domain Driven Design）
