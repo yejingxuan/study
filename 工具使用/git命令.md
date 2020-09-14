@@ -1,0 +1,123 @@
+
+- [一、基本操作](#一基本操作)
+- [二、当前在 master 分支，需要将此次修改的代码提交至 dev 分支](#二当前在-master-分支需要将此次修改的代码提交至-dev-分支)
+  - [2.1、stash命令](#21stash命令)
+
+
+### 一、基本操作
+- 初始化Git
+    ```shell
+    git init                 
+    ```
+
+- 将项目所有文件都交给Git 管理
+    ```shell
+    git add .
+    ```
+
+-  提交，并且写上备注
+    ```shell
+    git commit -m "first commit"         
+    ```
+
+- 关联远程仓库
+    ```shell
+    git remote add origin https://github.com/zjh123456789/5656.git
+    ```
+
+- 删除当前 Git 库关联的远程仓库地址
+    ```shell
+    git remote remove origin
+    ```
+
+- 把Git 库推送到远端
+    ```shell
+    git push -u origin master
+    ```
+
+- 查看本地分支
+    ```shell
+    git branch
+    ```  
+
+- 查看本地及远程分支
+    ```shell
+    git branch -a
+    ```  
+
+- 分支切换
+    ```shell
+    git checkout branch_name
+    ```
+
+
+
+
+### 二、当前在 master 分支，需要将此次修改的代码提交至 dev 分支
+> 前提：必须是处于git下的文件，未add到git的文件无法使用。
+
+- 创建新分支
+    ```shell
+    git branch dev
+    ```
+- 将工作区恢复到上次提交的内容，同时备份本地所做的修改
+    ```shell
+    git stash
+    ```
+
+
+- 切换分支
+    ```shell
+    git checkout dev
+    ```
+
+- 从 git 栈中获取到最近一次 stash 的内容，之后会删除栈中对应的 stash
+    ```shell
+    git stash pop
+    ```
+
+- 添加所有（已修改）文件
+    ```shell
+    git add .
+    ```
+
+- 添加到本地仓库，Win 注释用双引号
+    ```shell
+    git commit -am "first commit init project"
+    ```
+
+- 获取
+    ```shell
+    git pull origin 远程名称
+    ```
+
+- 推送
+    ```shell
+    git push origin 远程名称
+    ```
+
+
+
+
+
+
+#### 2.1、stash命令
+- 命令：git stash
+保存当前工作进度，将工作区和暂存区恢复到修改之前。
+
+- 命令：git stash save message
+作用同上，message为此次进度保存的说明。
+
+- 命令：git stash list
+显示保存的工作进度列表，编号越小代表保存进度的时间越近。
+
+- 命令：git stash pop stash@{num}
+恢复工作进度到工作区，此命令的stash@{num}是可选项，在多个工作进度中可以选择恢复，不带此项则默认恢复最近的一次进度相当于git stash pop stash@{0}
+
+- 命令：git stash apply stash@{num}
+恢复工作进度到工作区且该工作进度可重复恢复，此命令的stash@{num}是可选项，在多个工作进度中可以选择恢复，不带此项则默认恢复最近的一次进度相当于git stash apply stash@{0}
+
+- 命令：git stash drop stash@{num}
+删除一条保存的工作进度，此命令的stash@{num}是可选项，在多个工作进度中可以选择删除，不带此项则默认删除最近的一次进度相当于git stash drop stash@{0}
+
+命令：git stash clear
