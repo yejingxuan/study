@@ -1,26 +1,76 @@
-# idea远程调试java代码
+
+- [一、idea快捷键总结](#一idea快捷键总结)
+- [二、idea远程调试java代码](#二idea远程调试java代码)
+  - [1、在idea中打开edit configurations选项](#1在idea中打开edit-configurations选项)
+  - [2、新建Remote选项](#2新建remote选项)
+  - [3、配置Remote](#3配置remote)
+  - [4、修改远端项目的启动命令，并重新启动](#4修改远端项目的启动命令并重新启动)
+  - [5、debug启动idea中的项目](#5debug启动idea中的项目)
 
 
-- [idea远程调试java代码](#idea%e8%bf%9c%e7%a8%8b%e8%b0%83%e8%af%95java%e4%bb%a3%e7%a0%81)
-  - [概述](#%e6%a6%82%e8%bf%b0)
-  - [1、在idea中打开edit configurations选项](#1%e5%9c%a8idea%e4%b8%ad%e6%89%93%e5%bc%80edit-configurations%e9%80%89%e9%a1%b9)
-  - [2、新建Remote选项](#2%e6%96%b0%e5%bb%baremote%e9%80%89%e9%a1%b9)
-  - [3、配置Remote](#3%e9%85%8d%e7%bd%aeremote)
-  - [4、修改远端项目的启动命令，并重新启动](#4%e4%bf%ae%e6%94%b9%e8%bf%9c%e7%ab%af%e9%a1%b9%e7%9b%ae%e7%9a%84%e5%90%af%e5%8a%a8%e5%91%bd%e4%bb%a4%e5%b9%b6%e9%87%8d%e6%96%b0%e5%90%af%e5%8a%a8)
-  - [5、debug启动idea中的项目](#5debug%e5%90%af%e5%8a%a8idea%e4%b8%ad%e7%9a%84%e9%a1%b9%e7%9b%ae)
+## 一、idea快捷键总结
 
-## 概述
+* 查看项目目录：ctrl+alt+shift+s
+
+* 查找类：Ctrl+Shift+Alt+N
+
+* 打开接口对应实现类：ctrl+alt+b
+
+---
+
+- 查找当前文件：ctrl+f
+
+- 全局查找：ctrl+shift+f
+
+- 替换当前文件：ctrl+r
+
+- 全局替换文件：ctrl+shift+r
+
+---
+
+- 自动补全变量名称 : ctrl + alt + v
+
+- 自动补全属性名称 : ctrl + alt + f
+
+- 覆盖父类方法：ctrl + o
+
+- 清除无用的包：ctrl + alt + o
+
+- 转大小写：ctrl + shift + u
+
+- 返回上一步：ctrl+z
+
+- 前进一步：ctrl+shift+z
+
+---
+
+* 注释模板设置：File–>Settings–>Editor–>Live Templates 
+
+        /**
+        * @Description: 
+        * @Author: yjx
+        * @Date:$DATE$ $TIME$
+        */
+
+        date:new date()
+        time:new time()
+    参考文章：[IDEA类和方法注释模板设置（非常详细）](https://blog.csdn.net/xiaoliulang0324/article/details/79030752)
+
+
+
+## 二、idea远程调试java代码
+
 由于在开发过程中，某些问题或者功能需要远程调试服务器端代码去分析解决。
 
-## 1、在idea中打开edit configurations选项
+### 1、在idea中打开edit configurations选项
 
 ![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20191220135658.png)
 
-## 2、新建Remote选项
+### 2、新建Remote选项
 
 ![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20191220135730.png)
 
-## 3、配置Remote
+### 3、配置Remote
 
 - ___name___: 可随意填写，建议填写有实际意义的名称
 - ___debugger mode___: 选择 attach to remote jvm选项
@@ -32,7 +82,7 @@
 
 ![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20191220140332.png)
 
-## 4、修改远端项目的启动命令，并重新启动
+### 4、修改远端项目的启动命令，并重新启动
 
 编辑项目的运行命令，加入命令：-jar -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=5005,suspend=n 
 
@@ -50,7 +100,7 @@ java -jar -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=5005,suspend=n 
 ps："address=5005": 5005为在idea中配置remote port时相同的端口。
 
 
-## 5、debug启动idea中的项目
+### 5、debug启动idea中的项目
 在idea中打入需要调试的代码断点。选择刚才配置好的remoe（warming）,执行debug启动方式。此时访问远端服务器上部署的项目的相关接口时，就会进入本地idea中的断点调试。
 
 ![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20191220140610.png)
