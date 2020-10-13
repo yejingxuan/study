@@ -134,6 +134,6 @@ systemctl restart kube-proxy1234567891011
 
 ## 参考文章
 
-[1]: https://blog.csdn.net/ysk_xh_521/article/details/81668631	"Docker+K8S 集群环境搭建及分布式应用部署"
-[2]: https://www.cnblogs.com/goldsunshine/p/10740928.html	"k8s网络之Flannel网络"
+- [Docker+K8S 集群环境搭建及分布式应用部署](https://blog.csdn.net/ysk_xh_521/article/details/81668631)
 
+- [k8s网络之Flannel网络](https://www.cnblogs.com/goldsunshine/p/10740928.html)
