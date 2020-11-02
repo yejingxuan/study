@@ -154,7 +154,7 @@ Go 语言在 sync 包中提供了用于同步的一些基本原语，包括常�
   //linux 
   export GOPROXY=https://goproxy.io
   //windows
-  set GOPROXY=https://goproxy.io
+  go env -w GOPROXY=https://goproxy.cn,direct
   ```
 
 - __常用命令__
@@ -173,7 +173,7 @@ Go 语言在 sync 包中提供了用于同步的一些基本原语，包括常�
 - __项目源码__
   
 > github.com/gin-gonic/gin
-  
+
 - __快速开启gin服务__
   ```go
   func main() {
@@ -216,7 +216,7 @@ Go 语言在 sync 包中提供了用于同步的一些基本原语，包括常�
 - 项目源码
   
 > github.com/BurntSushi/toml
-  
+
 - 配置文件config.toml
   ```toml
   [owner]
@@ -278,7 +278,7 @@ Go 语言在 sync 包中提供了用于同步的一些基本原语，包括常�
 - __项目源码__
   
 > github.com/go-gorm/gorm
-  
+
 - __DB连接池__
   - 在高并发实践中，为了提高数据库连接的使用率，避免重复建立数据库连接带来的性能消耗，会经常使用数据库连接池技术来维护数据库连接。
   - gorm自带了数据库连接池使用非常简单只要设置下数据库连接池参数即可。
@@ -310,6 +310,24 @@ Go 语言在 sync 包中提供了用于同步的一些基本原语，包括常�
   ```
 
 ### 5.4、日志框架logrus
+
+
+
+### 5.5、golang调用python
+
+```
+exec: "gcc": executable file not found in %PATH%
+```
+
+
+
+```
+Python.h: No such file or directory
+```
+
+
+
+
 
 ## 六、rpc框架grpc-go
 

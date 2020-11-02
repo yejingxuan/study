@@ -21,7 +21,7 @@
     yum update
 
     # 2、yum安装docker
-    yum install docker![20191211142205.png](https://i.loli.net/2019/12/11/vDUHKVcE3RzIN4A.png)
+    yum install docker
 
     # 3、启动并加入开机启动
     systemctl start docker
@@ -46,7 +46,7 @@
     ```docker
     docker search 镜像名称
     docker pull 镜像名称
-    ``` 
+    ```
 - docker镜像删除命令
     ```
     docker rmi 镜像id
@@ -79,13 +79,13 @@
     ```docker
     docker stop 容器id
     docker kill 容器id
-    ``` 
+    ```
 
 - docker容器删除命令
     ```docker
     #删除前必须先停止容器
     docker rm 容器id
-    ``` 
+    ```
 
 
 ## 二、构建镜像

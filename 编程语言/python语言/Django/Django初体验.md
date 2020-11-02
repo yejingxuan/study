@@ -1,6 +1,8 @@
 # Django初体验
 
-> 参考文章 [Django操作mysql数据库增删改查](https://blog.csdn.net/zhangcongyi420/article/details/102313888)
+
+
+[TOC]
 
 
 ## 一、Django是什么
@@ -33,3 +35,47 @@ Django采用了MVC的软件设计模式，即模型M，视图V和控制器C。
 Django 对各种数据库提供了很好的支持，包括：PostgreSQL、MySQL、SQLite、Oracle。
 Django 为这些数据库提供了统一的调用API。 我们可以根据自己业务需求选择不同的数据库。
 MySQL 是 Web 应用中最常用的数据库
+
+
+
+## 四、入门
+
+### 4.1、安装django
+
+- 手动安装：
+  - 下载 Django 压缩包，解压并和 Python安装目录放在同一个根目录，进入 Django 目录，执行 python setup.py install，然后开始安装，Django 将要被安装到 Python 的 Lib下site-packages。
+- 自动安装：
+
+```shell
+pip3 install django==3.1.2
+```
+
+成功安装Django后，在下图中的路径可找到`django-admin.exe`文件，将它加入操作系统环境变量中。这样以后调用会比较方便。
+
+### 4.2、初始化django项目
+
+```shell
+# 初始化一个django项目
+django-admin.py startproject projectname
+
+# 添加新的APP
+python manage.py startapp appname
+```
+
+### 4.3、启动django项目
+
+```shell
+python manage.py runserver
+```
+
+
+
+
+
+
+
+
+
+## 参考文章
+
+-  [Django操作mysql数据库增删改查](https://blog.csdn.net/zhangcongyi420/article/details/102313888)
