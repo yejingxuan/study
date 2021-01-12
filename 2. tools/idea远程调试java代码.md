@@ -1,0 +1,106 @@
+
+- [一、idea快捷键总结](#一idea快捷键总结)
+- [二、idea远程调试java代码](#二idea远程调试java代码)
+  - [1、在idea中打开edit configurations选项](#1在idea中打开edit-configurations选项)
+  - [2、新建Remote选项](#2新建remote选项)
+  - [3、配置Remote](#3配置remote)
+  - [4、修改远端项目的启动命令，并重新启动](#4修改远端项目的启动命令并重新启动)
+  - [5、debug启动idea中的项目](#5debug启动idea中的项目)
+
+
+## 一、idea快捷键总结
+
+* 查看项目目录：ctrl+alt+shift+s
+
+* 查找类：Ctrl+Shift+Alt+N
+
+* 打开接口对应实现类：ctrl+alt+b
+
+---
+
+- 查找当前文件：ctrl+f
+
+- 全局查找：ctrl+shift+f
+
+- 替换当前文件：ctrl+r
+
+- 全局替换文件：ctrl+shift+r
+
+---
+
+- 自动补全变量名称 : ctrl + alt + v
+
+- 自动补全属性名称 : ctrl + alt + f
+
+- 覆盖父类方法：ctrl + o
+
+- 清除无用的包：ctrl + alt + o
+
+- 转大小写：ctrl + shift + u
+
+- 返回上一步：ctrl+z
+
+- 前进一步：ctrl+shift+z
+
+---
+
+* 注释模板设置：File–>Settings–>Editor–>Live Templates 
+
+        /**
+        * @Description: 
+        * @Author: yjx
+        * @Date:$DATE$ $TIME$
+        */
+
+        date:new date()
+        time:new time()
+    参考文章：[IDEA类和方法注释模板设置（非常详细）](https://blog.csdn.net/xiaoliulang0324/article/details/79030752)
+
+
+
+## 二、idea远程调试java代码
+
+由于在开发过程中，某些问题或者功能需要远程调试服务器端代码去分析解决。
+
+### 1、在idea中打开edit configurations选项
+
+![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20191220135658.png)
+
+### 2、新建Remote选项
+
+![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20191220135730.png)
+
+### 3、配置Remote
+
+- ___name___: 可随意填写，建议填写有实际意义的名称
+- ___debugger mode___: 选择 attach to remote jvm选项
+- ___transport___: 选择socket
+- ___host___: 填写远端服务器的ip地址
+- ___port___: 端口号可自定义（必须为本地服务和远端服务都没有被占用的端口，防止端口冲突）
+- ___command lin arguments for reomte jvm___: idea自动补全,若没有自动补全可手动输入
+- ___use module classpath___: 选择需要远端调试的项目
+
+![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20191220140332.png)
+
+### 4、修改远端项目的启动命令，并重新启动
+
+编辑项目的运行命令，加入命令：-jar -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=5005,suspend=n 
+
+例如springboot项目启动命令为
+```shell
+java -jar springboot-project.jar
+```
+更改为
+```shell
+java -jar -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=5005,suspend=n -jar springboot-project.jar
+```
+
+点击保存，并重启该项目的服务。
+
+ps："address=5005": 5005为在idea中配置remote port时相同的端口。
+
+
+### 5、debug启动idea中的项目
+在idea中打入需要调试的代码断点。选择刚才配置好的remoe（warming）,执行debug启动方式。此时访问远端服务器上部署的项目的相关接口时，就会进入本地idea中的断点调试。
+
+![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20191220140610.png)
