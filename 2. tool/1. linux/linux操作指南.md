@@ -2,15 +2,17 @@
 
 - [linux基本命令](#linux基本命令)
   - [一、用户相关 & 权限相关](#一用户相关--权限相关)
-  - [二、文件相关](#二文件相关)
-        - [查找文件里的内容](#查找文件里的内容)
-        - [统计文件内容](#统计文件内容)
-        - [解压文件](#解压文件)
-        - [dpkg : deb软件包命令](#dpkg--deb软件包命令)
-  - [进程相关](#进程相关)
-  - [网络相关](#网络相关)
-  - [文件相关](#文件相关)
+  - [二、文件](#二文件)
+    - [查找文件里的内容](#查找文件里的内容)
+    - [统计文件内容](#统计文件内容)
+    - [解压文件](#解压文件)
+    - [dpkg : deb软件包命令](#dpkg--deb软件包命令)
+  - [三、进程](#三进程)
+  - [四、网络](#四网络)
+  - [五、文件](#五文件)
     - [增删改查文件](#增删改查文件)
+  - [六、命令](#六命令)
+    - [添加自定义命令](#添加自定义命令)
 
 ## 一、用户相关 & 权限相关
 - sudo -i
@@ -28,33 +30,32 @@
 - chmod 777 file
   >赋予所有用户该文件可读可写可执行权限
 
-## 二、文件相关
+## 二、文件
 
-##### 查找文件里的内容
+### 查找文件里的内容
 > https://www.cnblogs.com/kerrycode/p/5802420.html
 
-##### 统计文件内容
+### 统计文件内容
 grep -o "hello" demo.log | wc -l
 
 -c 只显示有多少行匹配 ，而不具体显示匹配的行
 -i 在字符串比较的时候忽略大小写
 -n 在每一行前面打印该行在文件中的行数
 
-##### 解压文件 
+### 解压文件 
 tar zxvf  filename 
 > x : 从 tar 包中把文件提取出来  
 z : 表示 tar 包是被 gzip 压缩过的，所以解压时需要用 gunzip 解压  
 v : 显示详细信息  
 f xxx.tar.gz : 指定被处理的文件是 xxx.tar.gz 
  
-##### dpkg : deb软件包命令
+### dpkg : deb软件包命令
     > dpkg -i filename.deb ：安装  
     dpkg -l : 显示已安装的
 
 
 
-
-## 进程相关
+## 三、进程
 
 - ps -aux | grep mysql
    >查看mysql相关进程的详细信息和占用内存
@@ -118,7 +119,7 @@ iostat 2 3 每两秒刷新显示 且显示三次
   kB_read：读取的总数据量；kB_wrtn：写入的总数量数据量；
 
 
-## 网络相关
+## 四、网络
 
 - ping IP
   >测试IP是否连通
@@ -136,7 +137,7 @@ iostat 2 3 每两秒刷新显示 且显示三次
   ```
 
 
-## 文件相关
+## 五、文件
 
 - scp root@107.172.27.254:/home/test.txt 
   >下载文件
@@ -155,3 +156,96 @@ iostat 2 3 每两秒刷新显示 且显示三次
 
 - tail -n 20 -f  filename
   >查看文件后20行并进行追踪
+
+
+## 六、命令
+
+### 添加自定义命令
+-  一、制作脚本
+   - 创建/home/jxye/my_cmds目录，把自定义的脚本放入该目录下面
+   - 创建脚本文件，例如 total-os.sh，用来统计服务器CPU、memery、disk的使用率
+
+   ```shell
+
+   #!/bin/bash
+   #This script is use for describle CPU Hard Memery Utilization
+   total=0
+   idle=0
+   system=0
+   user=0
+   nice=0
+   mem=0
+   vmexec=/usr/bin/vmstat
+   which sar > /dev/null 2>&1
+   if [ $? -ne 0 ]
+   then
+   ver=`vmstat -V | awk '{printf $3}'`
+   nice=0
+   temp=`vmstat 1 3 |tail -1`
+   user=`echo $temp |awk '{printf("%s\n",$13)}'`
+   system=`echo $temp |awk '{printf("%s\n",$14)}'`
+   idle=`echo $temp |awk '{printf("%s\n",$15)}'`
+   total=`echo|awk '{print (c1+c2)}' c1=$system c2=$user`
+   fi
+   echo "#CPU Utilization#"
+   echo "Total CPU  is already use: $total"
+   echo "CPU user   is already use: $user"
+   echo "CPU system is already use: $system"
+   echo "CPU nice   is already use: $nice"
+   echo "CPU idle   is already use: $idle"
+   echo
+   root_use=$(df -lh | awk 'NR==2' | awk '{print $5}')
+   dev_use=$(df -lh | awk 'NR==3' | awk '{print $5}')
+   dev_shm_use=$(df -lh | awk 'NR==4' | awk '{print $5}')
+   echo "#Hard Utilization#"
+   echo "/        is already use: $root_use"
+   echo "/dev     is already use: $dev_use"
+   echo "/dev/shm is already use: $dev_shm_use"
+   echo
+   memery_used=$(free | awk 'NR==2' | awk '{print $3}')
+   memery_all=$(free | awk 'NR==2' | awk '{print $2}')
+   memery_percent=$(echo "scale=4;$memery_used / $memery_all" | bc)
+   percent_part1=$(echo $memery_percent | cut -c 2-3)
+   percent_part2=$(echo $memery_percent | cut -c 4-5)
+   echo "#Memery Utilization#"
+   echo "system memery is already use: $percent_part1.$percent_part2%"
+   swap_used=$(free | awk 'NR==4' | awk '{print $3}')
+   swap_all=$(free | awk 'NR==4' | awk '{print $2}')
+   swap_percent=$(echo "scale=4;$swap_used / $swap_all" | bc)
+   swap_part1=$(echo $swap_percent | cut -c 2-3)
+   swap_part2=$(echo $swap_percent | cut -c 4-5)
+   echo "swap   memery is already use: $swap_part1.$swap_part2%"
+   echo
+
+   ```
+
+   - 分配权限
+   ```shell
+   chmod 777 total-os.sh
+   ```
+
+
+
+- 二、配置环境变量
+
+  - 编辑 /etc/profile 文件，把脚本所在的目录，例如  /home/jxye/my_cmds  配置到path环境变量下
+   ```shell
+   vim /etc/profile
+   ```
+
+  - 输入shift+i进入插入模式，对path环境编辑进行编辑
+
+   ```shell
+   export PATH=$JAVA_HOME/bin:/home/jxye/my_cmds:$PATH
+   ```
+
+  - 使环境变量生效
+   ```shell
+   source /etc/profile
+   ```
+
+  - 直接使用命令来验证
+   ```shell
+   total-os.sh
+   ```
+
