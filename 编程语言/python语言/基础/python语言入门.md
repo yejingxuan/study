@@ -1,5 +1,15 @@
 # python语言入门
 
+- [python语言入门](#python语言入门)
+  - [一、编程规约](#一编程规约)
+    - [1.1、命名规范](#11命名规范)
+    - [1.2、建议](#12建议)
+  - [二、常用类库](#二常用类库)
+    - [xml操作](#xml操作)
+    - [深拷贝、浅拷贝](#深拷贝浅拷贝)
+    - [三、虚拟环境](#三虚拟环境)
+    - [四、打包部署](#四打包部署)
+
 ## 一、编程规约
 
 ### 1.1、命名规范
@@ -124,7 +134,20 @@ dict4 = copy.deepcopy(dict1)                             # 深拷贝拷贝，父
 
 
 
-### 三、打包部署
+### 三、虚拟环境
+
+```python
+# 创建虚拟环境
+python -m venv name
+
+
+
+
+```
+
+
+
+### 四、打包部署
 
 ```shell
 pip3 freeze >requirements.txt
@@ -133,6 +156,6 @@ pip3 install -r requirements.txt
 # 导出依赖包到当前目录
 pip download -r requirements.txt
 # 导入当前目前的依赖包到项目里
-pip install   --no-index   --find-links=.   -r   requirements.txt
+pip install   --no-index   --find-links=. -r requirements.txt
 ```
 

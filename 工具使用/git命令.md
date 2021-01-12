@@ -1,5 +1,7 @@
 
 - [一、基本操作](#一基本操作)
+- [二、创建分支](#二创建分支)
+- [三、分支合并](#三分支合并)
 - [二、当前在 master 分支，需要将此次修改的代码提交至 dev 分支](#二当前在-master-分支需要将此次修改的代码提交至-dev-分支)
   - [2.1、stash命令](#21stash命令)
 
@@ -50,8 +52,23 @@
     git checkout branch_name
     ```
 
+### 二、创建分支
+- 创建分支
 
 
+### 三、分支合并
+- 切换到master分支
+    ```shell
+    git checkout master
+    ```
+
+
+- 从dev分支合并代码到master分支
+  ```shell
+  //在master分支执行
+  git merge dev
+  ```
+- git push 提交数据到远端分支
 
 ### 二、当前在 master 分支，需要将此次修改的代码提交至 dev 分支
 > 前提：必须是处于git下的文件，未add到git的文件无法使用。
