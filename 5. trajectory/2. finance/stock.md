@@ -7,7 +7,7 @@
   - [2、最熟悉的也是相对风险小的](#2最熟悉的也是相对风险小的)
   - [3、价值投资](#3价值投资)
 - [三、Proper asset allocation](#三proper-asset-allocation)
-- [四、](#四)
+- [四、start-stock](#四start-stock)
 - [参考文章](#参考文章)
 
 ## 一、feelings and experiences
@@ -37,7 +37,56 @@
 
 
 
-## 四、
+## 四、start-stock
+<table>
+	<tr>
+	    <th>题材</th>
+	    <th>名称</th>
+	    <th>关注价</th>
+      <th>期待入手价</th>
+      <th>收益</th>
+	</tr >
+	<tr >
+	    <td rowspan="2">白酒</td>
+	    <td>酒鬼酒</td>
+	    <td>205</td>
+      <td>180</td>
+      <td></td>
+	</tr>
+	<tr >
+	    <td>贵州茅台</td>
+	    <td>500</td>
+      <td>错过了</td>
+      <td></td>
+	</tr>
+	<tr>
+	    <td rowspan="2">科技股</td>
+	    <td>浪潮信息</td>
+      <td>23</td>
+      <td>30</td>
+      <td>5000</td>
+	</tr>
+  <tr>
+	    <td>海康威视</td>
+      <td>26</td>
+      <td>30</td>
+      <td>1000</td>
+	</tr>
+  <tr>
+      <td rowspan="2">5G通信</td>
+	    <td>烽火科技</td>
+      <td>23</td>
+      <td>23</td>
+      <td>500</td>
+	</tr>
+  <tr>
+	    <td>中兴通信</td>
+      <td>16</td>
+      <td>30</td>
+      <td></td>
+	</tr>
+	
+</table>
 
 
 ## 参考文章
