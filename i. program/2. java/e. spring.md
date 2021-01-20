@@ -1,25 +1,29 @@
 # spring
 
 - [spring](#spring)
-  - [一、spring内部构成](#%e4%b8%80spring%e5%86%85%e9%83%a8%e6%9e%84%e6%88%90)
-  - [二、spring加载机制](#%e4%ba%8cspring%e5%8a%a0%e8%bd%bd%e6%9c%ba%e5%88%b6)
-  - [三、spring特性](#%e4%b8%89spring%e7%89%b9%e6%80%a7)
-    - [spring的bean生命周期](#spring%e7%9a%84bean%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f)
-    - [spring之IOC](#spring%e4%b9%8bioc)
-    - [spring之AOP](#spring%e4%b9%8baop)
-  - [四、spring中涉及的设计模式](#%e5%9b%9bspring%e4%b8%ad%e6%b6%89%e5%8f%8a%e7%9a%84%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f)
-    - [4.1、创建型设计模式](#41%e5%88%9b%e5%bb%ba%e5%9e%8b%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f)
-      - [简单工厂](#%e7%ae%80%e5%8d%95%e5%b7%a5%e5%8e%82)
-      - [工厂模式](#%e5%b7%a5%e5%8e%82%e6%a8%a1%e5%bc%8f)
-      - [单例模式](#%e5%8d%95%e4%be%8b%e6%a8%a1%e5%bc%8f)
-    - [4.2、 结构型设计模式](#42-%e7%bb%93%e6%9e%84%e5%9e%8b%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f)
-      - [适配器模式](#%e9%80%82%e9%85%8d%e5%99%a8%e6%a8%a1%e5%bc%8f)
-      - [装饰模式](#%e8%a3%85%e9%a5%b0%e6%a8%a1%e5%bc%8f)
-      - [代理模式](#%e4%bb%a3%e7%90%86%e6%a8%a1%e5%bc%8f)
-    - [4.3、行为型设计模式](#43%e8%a1%8c%e4%b8%ba%e5%9e%8b%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f)
-      - [观察者模式](#%e8%a7%82%e5%af%9f%e8%80%85%e6%a8%a1%e5%bc%8f)
-      - [策略模式](#%e7%ad%96%e7%95%a5%e6%a8%a1%e5%bc%8f)
-      - [模板模式](#%e6%a8%a1%e6%9d%bf%e6%a8%a1%e5%bc%8f)
+  - [一、spring内部构成](#一spring内部构成)
+  - [二、spring加载机制](#二spring加载机制)
+  - [三、spring特性](#三spring特性)
+    - [spring的bean生命周期](#spring的bean生命周期)
+    - [spring之IOC](#spring之ioc)
+    - [spring之AOP](#spring之aop)
+  - [四、spring中涉及的设计模式](#四spring中涉及的设计模式)
+    - [4.1、创建型设计模式](#41创建型设计模式)
+      - [简单工厂](#简单工厂)
+      - [工厂模式](#工厂模式)
+      - [单例模式](#单例模式)
+    - [4.2、 结构型设计模式](#42-结构型设计模式)
+      - [适配器模式](#适配器模式)
+      - [装饰模式](#装饰模式)
+      - [代理模式](#代理模式)
+    - [4.3、行为型设计模式](#43行为型设计模式)
+      - [观察者模式](#观察者模式)
+      - [策略模式](#策略模式)
+      - [模板模式](#模板模式)
+  - [五、spring定时器](#五spring定时器)
+    - [condition1:单个任务单独执行](#condition1单个任务单独执行)
+    - [condition2:单个任务通过子线程运行](#condition2单个任务通过子线程运行)
+    - [3:一个任务并发执行](#3一个任务并发执行)
 
 ## 一、spring内部构成
 
@@ -184,3 +188,74 @@ IOC分两个过程：bean的解析注册 和 bean的实例化。
 - __实质__：
 - __实现原理__：
 - __优点__：
+
+
+## 五、spring定时器
+
+> [Schedule的源码解析](https://blog.csdn.net/weixin_40318210/article/details/78149692)
+
+
+>说明：  
+    1、使用@Scheduled时要在启动类上增加@EnableScheduling，使用@Async注解时要在启动类上加上@EnableAsync  
+    2、下面所说的并行，是指两个不同的调度任务同时执行，并发是指同一个调度任务同时执行（即上次任务还没有执行完，下次任务已经开始执行了）
+
+
+### condition1:单个任务单独执行
+
+代码片段如下：
+```java
+@Scheduled(cron = "0/5 * * * * ? ")//每5秒执行一次
+public void test1() {
+    System.out.println(Thread.currentThread().getName() + ":test1.start" + new Date());
+    try {
+        Thread.sleep(7000);
+    } catch (Exception e) {
+
+    }
+    System.out.println(Thread.currentThread().getName() + ":test1.end " + new Date());
+}
+```
+
+cron表达式为每5秒执行一次，任务中sleep7秒，最终输入为每10秒执行一次。
+
+__结论：上次任务没有执行完，下次任务不会执行，一直等到该次任务执行完且到任务执行时间点，下一次任务才会执行。__
+
+### condition2:单个任务通过子线程运行
+
+代码片段如下：
+
+```java
+@Scheduled(cron = "0/5 * * * * ? ")//每5秒执行一次
+public void test1() {
+    System.out.println("主线程" + Thread.currentThread().getName());
+    new Thread(() -> {
+        System.out.println("子线程" + Thread.currentThread().getName() + ":test1.start" + new Date());
+        try {
+            Thread.sleep(7000);
+        } catch (Exception e) {
+
+        }
+        System.out.println("子线程" + Thread.currentThread().getName() + ":test1.end " + new Date());
+    }).start();
+}
+```
+
+__结论：通过子线程去执行任务，并不会阻塞主线程的任务调度。（按照cron表达式，依旧是5秒执行一次，而且每次都是新开一个线程。）__
+
+
+### 3:一个任务并发执行
+
+```java
+@Scheduled(cron = "0/5 * * * * ? ")//每5秒执行一次
+@Async
+public void test1() {
+    System.out.println(Thread.currentThread().getName() + ":test1.start" + new Date());
+    try {
+        Thread.sleep(7000);
+    } catch (Exception e) {
+
+    }
+    System.out.println(Thread.currentThread().getName() + ":test1.end " + new Date());
+}
+```
+__结论：任务异步执行时，且每次执行任务时，都是新建一个线程。__

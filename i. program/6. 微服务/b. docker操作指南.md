@@ -2,7 +2,7 @@
 
 - [docker操作指南](#docker操作指南)
   - [一、quick-start](#一quick-start)
-    - [1、docker安装](#1docker安装)
+    - [1、docker安装-linux](#1docker安装-linux)
     - [2、docker国内镜像源配置](#2docker国内镜像源配置)
     - [3、docker基础命令](#3docker基础命令)
   - [二、构建镜像](#二构建镜像)
@@ -25,7 +25,7 @@
 
 ## 一、quick-start
 
-### 1、docker安装
+### 1、docker安装-linux
 
 ```shell
 # 1、更新yum源

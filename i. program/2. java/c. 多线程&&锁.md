@@ -159,7 +159,6 @@
   - join的原理是，不断的检查join加入的thread是否存活，如果存活，那么让当前线程一直wait，直到oin加入的thread线程终止，当前线程的this.notifyAll 就会被调用
 
 - __CountDownLatch__
-  - 通过他可以使
   - CountDownLatch中我们主要用到两个方法一个是await()方法，调用这个方法的线程会被阻塞，另外一个是countDown()方法，调用这个方法会使计数器减一，当计数器的值为0时，因调用await()方法被阻塞的线程会被唤醒，继续执行
   - 构造函数
     ```java
