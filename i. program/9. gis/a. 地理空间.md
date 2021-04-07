@@ -12,6 +12,8 @@
     - [2、坐标系转换](#2坐标系转换)
   - [四、空间数据处理](#四空间数据处理)
     - [1、测试几何图形内部是否相交](#1测试几何图形内部是否相交)
+    - [2、获取矢量数据的extent-坐标范围](#2获取矢量数据的extent-坐标范围)
+    - [3、矢量数据转为mvt](#3矢量数据转为mvt)
   - [参考文章](#参考文章)
 
 ## 一、基础
@@ -95,6 +97,15 @@
   st_geomfromgeojson('{"type":"Polygon","coordinates":[[[119.34860903,35.3107758],[119.34879994,35.3097576],[119.35011587,35.31007475],[119.34987723,35.31100949],[119.34860903,35.3107758]]]}'))
   ```
 
+### 2、获取矢量数据的extent-坐标范围
+  ```sql
+  SELECT st_extent(ST_Transform(geom, 4326)) as bextent FROM tablename
+  ```
+
+### 3、矢量数据转为mvt
+  ```sql
+  select ST_AsMVT(P, '8', 4096, 'geometry') as "mvt" from (select ST_AsMVTGeom(ST_Transform(geom, 4326),ST_MakeEnvelope(118.125,40.979898069620134,123.75,36.597889133070204, 4326),4096, 64, TRUE) geometry FROM sample_vector where sample_batch_id=8) AS P
+  ```
 
 ## 参考文章
 - [GIS基础知识 - 坐标系、投影、EPSG:4326、EPSG:3857](https://www.cnblogs.com/E7868A/p/11460865.html)

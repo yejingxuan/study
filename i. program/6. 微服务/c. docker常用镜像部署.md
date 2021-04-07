@@ -230,6 +230,8 @@
 - 使用docker-compose启动容器，在docker-compose.yml目录执行下面命令
   ```shell
   docker-compose up -d 
+  # docker run启动
+  docker run -d -p 6379:6379 --name my-redis docker.io/redis:latest
   ```
 
 - 启动后执行命令,查看容器是否启动成功
