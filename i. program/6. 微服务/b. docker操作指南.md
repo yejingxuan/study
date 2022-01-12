@@ -4,7 +4,8 @@
   - [一、quick-start](#一quick-start)
     - [1、docker安装-linux](#1docker安装-linux)
     - [2、docker国内镜像源配置](#2docker国内镜像源配置)
-    - [3、docker基础命令](#3docker基础命令)
+    - [3、docker目录](#3docker目录)
+    - [4、docker基础命令](#4docker基础命令)
   - [二、构建镜像](#二构建镜像)
     - [1、构建镜像有三种方式](#1构建镜像有三种方式)
     - [2、Dockerfile文件编写(把jar包制作成镜像)](#2dockerfile文件编写把jar包制作成镜像)
@@ -33,7 +34,12 @@ yum clean all
 yum update
 
 # 2、yum安装docker
-yum install docker
+# 设置yum源
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+# 查看所有仓库中所有docker版本
+yum list docker-ce --showduplicates | sort -r
+# 安装指定版本
+yum install docker-ce-18.03.1.ce-1.el7.centos
 
 # 3、启动并加入开机启动
 systemctl start docker
@@ -73,7 +79,11 @@ chmod +x /usr/local/bin/docker-compose
 - window & mac 环境下：
   ![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20210115145700.png)
 
-### 3、docker基础命令
+### 3、docker目录
+- 修改docker镜像文件存储的位置：ln -s /data/tools/docke /var/lib/docker
+  
+
+### 4、docker基础命令
 - docker服务启动命令
     ```
     service docker start
@@ -176,6 +186,8 @@ chmod +x /usr/local/bin/docker-compose
 
     ```cmd
     docker build -t imagename .
+    # 指定dockerfile进行镜像构建
+    docker build -f Dockerfile01 -t xxx-image:v2.0.0 .
     ```
 
 4. 运行镜像

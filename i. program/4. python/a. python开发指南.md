@@ -33,8 +33,12 @@
 
 - __永久修改__  
   - linux: 修改 ~/.pip/pip.conf (没有就创建一个)， 内容如下：
-  ```shell
-  index-url = http://mirrors.aliyun.com/pypi/simple/
+  ```yaml
+  [global]
+  timeout = 3000
+  index-url = http://mirrors.aliyun.com/pypi/simple
+  [install]
+  trusted-host=mirrors.aliyun.com
   ```
   - windows: 直接在user目录中创建一个pip目录，如：C:\Users\xx\pip，新建文件pip.ini，内容如下
   ```shell
@@ -74,6 +78,7 @@
 
     ```shell
     pip install requests
+    
     ```
 
 - openpyxl：常用excel处理类库

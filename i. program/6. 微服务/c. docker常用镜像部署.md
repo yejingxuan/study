@@ -9,6 +9,7 @@
   - [docker部署redis](#docker部署redis)
   - [docker部署kafka（单节点部署）](#docker部署kafka单节点部署)
   - [docker部署tomcat](#docker部署tomcat)
+  - [docker部署centos7-sshd](#docker部署centos7-sshd)
 
 ## 概述
 
@@ -60,6 +61,8 @@
 - 附加：使用docker run 直接启动容器的方法
   ```docker
   docker run --name yjx-mysql -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password 镜像id
+  # 忽略mysql的大小写
+  docker run --name yjx-mysql5.7 -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 daocloud.io/library/mysql:5.7 --lower_case_table_names=1
   ```
 
 ## docker部署postgresql
@@ -313,6 +316,26 @@
 - 使用docker-compose启动容器，在docker-compose.yml目录执行下面命令
   ```shell
   docker-compose up -d 
+  ```
+
+- 启动后执行命令,查看容器是否启动成功
+  ```shell
+  docker ps 
+  ```
+- 若启动失败，查看容器日志定位原因
+  ```shell
+  docker logs --tail -f 容器id
+  ```
+
+## docker部署centos7-sshd
+
+- 拉取镜像
+
+- 根据镜像生成容器并启动
+  ```shell
+  docker run -d -p 2222:22 -it --name=mycentos -v D:\mycentos\root\:/home/root/ -e "SSH_PASSWORD_AUTHENTICATION=true" -e "SSH_USER=root" -e "SSH_USER_PASSWORD=123456"  --privileged jdeathe/centos-ssh:2.6.1 init
+
+  docker run -d -p 2222:22 -it --name=mycentos -v D:\mycentos\root\:/home/root/ -v //var/run/docker.sock:/var/run/docker.sock --privileged centos:7 init
   ```
 
 - 启动后执行命令,查看容器是否启动成功

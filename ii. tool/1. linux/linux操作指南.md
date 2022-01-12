@@ -50,7 +50,7 @@ v : 显示详细信息
 f xxx.tar.gz : 指定被处理的文件是 xxx.tar.gz 
  
 ### dpkg : deb软件包命令
-    > dpkg -i filename.deb ：安装  
+    > dpkg -i filename.deb ：安装
     dpkg -l : 显示已安装的
 
 
